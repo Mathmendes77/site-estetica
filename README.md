@@ -1,16 +1,30 @@
-# React + Vite
+💇‍♀️ Sistema de Agendamento — Clínica de Estética
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Sistema web completo para gerenciamento de agendamentos de uma clínica de estética, desenvolvido sob demanda para uma cliente do setor. Permite cadastro e login de clientes, criação de agendamentos e gerenciamento de horários disponíveis, com autenticação segura via JWT.
 
-Currently, two official plugins are available:
+✨ Funcionalidades
+Cadastro e login de usuários com autenticação via JWT
+Criação, edição e cancelamento de agendamentos
+Gerenciamento de horários disponíveis
+Cadastro e consulta de clientes
+Rotas protegidas: cada usuário acessa apenas seus próprios dados
+🛠️ Tecnologias utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Front-end
 
-## React Compiler
+React.js
+CSS3 / estilização responsiva
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Back-end
 
-## Expanding the Oxlint configuration
+Node.js
+Express
+JSON Web Token (JWT) para autenticação
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Banco de dados
+
+Supabase (PostgreSQL)
+
+Pré-requisitos
+Node.js (v18 ou superior)
+Uma conta no Supabase com um projeto criado
