@@ -4,10 +4,7 @@ import mayra from "../assets/mayra.png";
 function Home() {
   return (
     <main className="pt-24">
-      {/* Hero */}
-
       <section className="px-6 md:px-12 py-16 grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-        {/* Coluna do texto */}
         <div>
           <span className="inline-block text-sm font-medium text-primary-dark bg-secondary px-4 py-1.5 rounded-full mb-5">
             Estética com cuidado, precisão e Carinho.
@@ -34,17 +31,15 @@ function Home() {
           </div>
         </div>
 
-        {/* Coluna da foto */}
         <div className="relative">
           <img
             src={mayra}
             alt="Ambiente do Studio Mayra Batistela"
-            className="rounded-3xl w-full h-[420px] object-cover shadow-lg"
+            className="rounded-3xl w-full h-105 object-cover shadow-lg"
           />
         </div>
       </section>
 
-      {/* Serviços em destaque */}
       <section className="px-6 py-16 bg-secondary/40">
         <h2 className="font-display text-3xl text-center font-semibold mb-10">
           Serviços em destaque
