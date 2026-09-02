@@ -5,12 +5,12 @@
   --font-display: "Cormorant Garamond", serif;
   --font-sans: "Inter", sans-serif;
 
-  --color-primary: #BC1A79;
-  --color-primary-dark: #8A1560;
-  --color-primary-light: #F5D9E9;
+  --color-primary: #FFB5C0;
+  --color-primary-dark: #FFB5C0;
+  --color-primary-light: #F8DEDE;
   --color-background: #FFFFFF;
-  --color-secondary: #FDF2F8;
-  --color-muted: #756B70;
+  --color-secondary: #FBEDED;
+  --color-muted: #8A7B82;
 }
 
 body {

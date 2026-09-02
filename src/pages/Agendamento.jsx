@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { servicos } from "../data/servicos";
+import { servicos } from "../data/Servicos";
 
 const horariosDisponiveis = [
   "09:00",
@@ -17,12 +17,13 @@ function Agendamento() {
   const navigate = useNavigate();
   const [etapa, setEtapa] = useState(1);
 
-  // Guarda tudo que o usuário escolhe ao longo das 3 etapas
   const [servicoSelecionado, setServicoSelecionado] = useState(null);
   const [data, setData] = useState("");
   const [hora, setHora] = useState("");
   const [nome, setNome] = useState("");
   const [telefone, setTelefone] = useState("");
+
+  const categorias = [...new Set(servicos.map((s) => s.categoria))];
 
   function confirmarAgendamento() {
     // Por enquanto só navega pra confirmação levando os dados junto.
@@ -43,28 +44,50 @@ function Agendamento() {
           <h1 className="font-display text-3xl font-semibold text-center mb-8">
             Escolha o serviço
           </h1>
-          <div className="space-y-3">
-            {servicos.map((servico) => (
-              <button
-                key={servico.id}
-                onClick={() => setServicoSelecionado(servico)}
-                className={`w-full text-left p-4 rounded-xl border transition ${
-                  servicoSelecionado?.id === servico.id
-                    ? "border-primary-dark bg-secondary"
-                    : "border-neutral-200 hover:border-primary"
-                }`}
-              >
-                <p className="font-medium">{servico.nome}</p>
-                <p className="text-sm text-muted">
-                  {servico.duracao} • {servico.preco}
-                </p>
-              </button>
-            ))}
-          </div>
+
+          {categorias.map((categoria) => (
+            <div key={categoria} className="mb-8">
+              <h2 className="font-display text-xl font-semibold text-primary-dark mb-4">
+                {categoria}
+              </h2>
+
+              <div className="space-y-3">
+                {servicos
+                  .filter((s) => s.categoria === categoria)
+                  .map((servico) => (
+                    <button
+                      key={servico.id}
+                      onClick={() => setServicoSelecionado(servico)}
+                      className={`w-full flex items-center gap-4 text-left p-3 rounded-2xl border transition ${
+                        servicoSelecionado?.id === servico.id
+                          ? "border-primary-dark bg-secondary"
+                          : "border-neutral-200 hover:border-primary"
+                      }`}
+                    >
+                      <img
+                        src={servico.foto}
+                        alt={servico.nome}
+                        className="w-16 h-16 rounded-xl object-cover flex-shrink-0"
+                      />
+                      <div className="flex-1">
+                        <p className="font-medium">{servico.nome}</p>
+                        <p className="text-sm text-muted mt-0.5">
+                          {servico.descricao}
+                        </p>
+                        <p className="text-sm font-medium text-primary mt-1">
+                          {servico.duracao} • {servico.preco}
+                        </p>
+                      </div>
+                    </button>
+                  ))}
+              </div>
+            </div>
+          ))}
+
           <button
             disabled={!servicoSelecionado}
             onClick={() => setEtapa(2)}
-            className="mt-8 w-full bg-primary-dark text-white py-3 rounded-full font-medium disabled:opacity-40 disabled:cursor-not-allowed"
+            className="mt-4 w-full bg-primary-dark text-white py-3 rounded-full font-medium disabled:opacity-40 disabled:cursor-not-allowed"
           >
             Próximo
           </button>
@@ -77,6 +100,16 @@ function Agendamento() {
           <h1 className="font-display text-3xl font-semibold text-center mb-8">
             Escolha data e horário
           </h1>
+
+          {/* Confirma qual serviço foi escolhido, pra não perder o contexto */}
+          <div className="flex items-center gap-3 bg-secondary rounded-xl p-3 mb-6">
+            <img
+              src={servicoSelecionado?.foto}
+              alt={servicoSelecionado?.nome}
+              className="w-12 h-12 rounded-lg object-cover"
+            />
+            <p className="font-medium text-sm">{servicoSelecionado?.nome}</p>
+          </div>
 
           <label className="block mb-2 font-medium">Data</label>
           <input
@@ -147,16 +180,23 @@ function Agendamento() {
           />
 
           {/* Resumo antes de confirmar */}
-          <div className="bg-secondary rounded-xl p-4 mb-6 text-sm">
-            <p>
-              <strong>Serviço:</strong> {servicoSelecionado?.nome}
-            </p>
-            <p>
-              <strong>Data:</strong> {data}
-            </p>
-            <p>
-              <strong>Horário:</strong> {hora}
-            </p>
+          <div className="flex items-center gap-3 bg-secondary rounded-xl p-4 mb-6 text-sm">
+            <img
+              src={servicoSelecionado?.foto}
+              alt={servicoSelecionado?.nome}
+              className="w-14 h-14 rounded-lg object-cover flex-shrink-0"
+            />
+            <div>
+              <p>
+                <strong>Serviço:</strong> {servicoSelecionado?.nome}
+              </p>
+              <p>
+                <strong>Data:</strong> {data}
+              </p>
+              <p>
+                <strong>Horário:</strong> {hora}
+              </p>
+            </div>
           </div>
 
           <div className="flex gap-3">
