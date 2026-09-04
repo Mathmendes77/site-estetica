@@ -14,6 +14,7 @@ function CardServico({ servico }) {
       </p>
       <Link
   to="/agendar"
+  state={{ servicoPreSelecionado: servico }}
   className="block text-center bg-primary rounded-full py-3 font-medium text-neutral-800 hover:scale-105 hover:shadow-lg transition duration-200"
 >
   Agendar

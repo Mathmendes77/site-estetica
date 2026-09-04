@@ -1,21 +1,17 @@
-import mayra from "../assets/mayra.png";
+import FOTOSOBRE from "../assets/FOTOSOBRE.png";
 
 function Sobre() {
   return (
     <main className="pt-28 pb-16 px-6 max-w-5xl mx-auto">
-      <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+      {/* Intro */}
+      <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
         <img
-          src={mayra}
+          src={FOTOSOBRE}
           alt="Mayra Batistela, esteticista e designer de sobrancelhas"
-          className="rounded-3xl w-full .h-\[420px\] {
-            height: 420px;
-            }object-cover shadow-lg"
+          className="rounded-3xl w-full h-[420px] object-cover shadow-lg"
         />
 
         <div>
-          <span className="inline-block text-sm font-medium text-primary-dark bg-secondary px-4 py-1.5 rounded-full mb-5">
-            Porto Feliz - SP
-          </span>
           <h1 className="font-display text-4xl md:text-5xl font-semibold text-neutral-800 leading-tight">
             Conheça a Mayra
           </h1>
@@ -32,50 +28,68 @@ function Sobre() {
         </div>
       </div>
 
-      {/* Especialidades */}
-      <section className="mb-16">
-        <h2 className="font-display text-3xl font-semibold text-center mb-10">
-          Especialidades
+      {/* Quem sou eu */}
+      <section className="mb-20">
+        <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary-dark text-center mb-10">
+          Quem sou eu?
         </h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {especialidades.map((item) => (
+
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {curiosidades.map((item) => (
             <div
-              key={item.titulo}
-              className="bg-white border border-secondary rounded-2xl p-6 text-center shadow-sm"
+              key={item.texto}
+              className="bg-white border border-secondary rounded-2xl p-5 text-center shadow-sm"
             >
-              <h3 className="font-semibold text-lg mb-2">{item.titulo}</h3>
-              <p className="text-muted text-sm">{item.descricao}</p>
+              <p className="text-2xl mb-2">{item.emoji}</p>
+              <p className="text-neutral-700 text-sm leading-relaxed">
+                {item.texto}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Placeholder para fotos de trabalhos - fase seguinte */}
-      <section className="text-center bg-secondary/40 rounded-2xl p-10">
-        <p className="text-muted">
-          Em breve: fotos reais de trabalhos e sessões realizadas no studio.
-        </p>
+      {/* Dia a dia no studio */}
+      <section className="bg-secondary/40 rounded-[2rem] p-8 md:p-12">
+        <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary-dark text-center mb-6">
+          Um dia no studio
+        </h2>
+        <div className="max-w-3xl mx-auto space-y-4 text-muted text-lg leading-relaxed text-center">
+          <p>
+            Cada atendimento começa antes mesmo da cliente chegar: espaço
+            preparado, materiais higienizados e tudo pensado para receber com
+            cuidado. Mais do que um procedimento, é um momento de pausa na
+            rotina — um tempo só para ela.
+          </p>
+          <p>
+            Como esteticista e também graduanda em Estética e Cosmética, a
+            Mayra une técnica atualizada com aquele carinho no atendimento
+            que transforma uma cliente em alguém que sempre volta. Cada
+            sobrancelha, cada pele, é tratada de um jeito único.
+          </p>
+          <p>
+            No fim do dia, o que fica não é só o resultado no espelho — é a
+            confiança de quem saiu se sentindo mais bonita e cuidada.
+          </p>
+        </div>
       </section>
     </main>
   );
 }
 
-const especialidades = [
+const curiosidades = [
+  {  texto: "35 aninhos, casada e apaixonada pela vida" },
+  {  texto: "Mãe de dois pets e empreendedora" },
   {
-    titulo: "Design de Sobrancelhas",
-    descricao: "Mapeamento facial personalizado para valorizar seu rosto.",
+    
+    texto:
+      "Designer de sobrancelha, graduanda em Estética e Cosmética e Pedagoga",
   },
+  {  texto: "Amo viajar, ler e estudar" },
+  {  texto: "Amo estar com a família e amigos" },
   {
-    titulo: "Henna",
-    descricao: "Definição natural e duradoura para as sobrancelhas.",
-  },
-  {
-    titulo: "Hydra Gloss",
-    descricao: "Hidratação profunda para lábios macios e saudáveis.",
-  },
-  {
-    titulo: "Estética Facial",
-    descricao: "Peeling e microagulhamento para renovar a pele.",
+    
+    texto: "Tenho muito amor pela profissão e sempre busca fazer o seu melhor",
   },
 ];
 

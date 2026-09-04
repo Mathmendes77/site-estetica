@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { servicos } from "../data/Servicos";
 
 const horariosDisponiveis = [
@@ -15,15 +15,21 @@ const horariosDisponiveis = [
 
 function Agendamento() {
   const navigate = useNavigate();
-  const [etapa, setEtapa] = useState(1);
+  const location = useLocation();
 
-  const [servicoSelecionado, setServicoSelecionado] = useState(null);
+  // Se veio um serviço pré-selecionado da página de Serviços, já começa na Etapa 2
+  const servicoPreSelecionado = location.state?.servicoPreSelecionado;
+
+  const [etapa, setEtapa] = useState(servicoPreSelecionado ? 2 : 1);
+  const [servicoSelecionado, setServicoSelecionado] = useState(
+    servicoPreSelecionado || null
+  );
   const [data, setData] = useState("");
   const [hora, setHora] = useState("");
   const [nome, setNome] = useState("");
   const [telefone, setTelefone] = useState("");
 
-  const categorias = [...new Set(servicos.map((s) => s.categoria))];
+  const categorias = [...new Set(servicos.map((s) => s.categoria))]
 
   function confirmarAgendamento() {
     // Por enquanto só navega pra confirmação levando os dados junto.
