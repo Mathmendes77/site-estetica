@@ -29,7 +29,7 @@ function Agendamento() {
   const [nome, setNome] = useState("");
   const [telefone, setTelefone] = useState("");
 
-  const categorias = [...new Set(servicos.map((s) => s.categoria))]
+  const categorias = [...new Set(servicos.map((s) => s.categoria))];
 
   function confirmarAgendamento() {
     // Por enquanto só navega pra confirmação levando os dados junto.
@@ -57,30 +57,30 @@ function Agendamento() {
                 {categoria}
               </h2>
 
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {servicos
                   .filter((s) => s.categoria === categoria)
                   .map((servico) => (
                     <button
                       key={servico.id}
                       onClick={() => setServicoSelecionado(servico)}
-                      className={`w-full flex items-center gap-4 text-left p-3 rounded-2xl border transition ${
+                      className={`w-full flex items-center gap-5 text-left p-5 rounded-2xl border transition duration-200 hover:shadow-[0_0_30px_-10px_rgba(238,187,187,0.8)] hover:-translate-y-0.5 ${
                         servicoSelecionado?.id === servico.id
-                          ? "border-primary-dark bg-secondary"
-                          : "border-neutral-200 hover:border-primary"
+                          ? "border-primary-dark bg-secondary shadow-[0_0_25px_-8px_rgba(238,187,187,0.7)]"
+                          : "border-neutral-200"
                       }`}
                     >
                       <img
                         src={servico.foto}
                         alt={servico.nome}
-                        className="w-16 h-16 rounded-xl object-cover flex-shrink-0"
+                        className="w-24 h-24 rounded-2xl object-cover flex-shrink-0"
                       />
                       <div className="flex-1">
-                        <p className="font-medium">{servico.nome}</p>
-                        <p className="text-sm text-muted mt-0.5">
+                        <p className="font-semibold text-lg">{servico.nome}</p>
+                        <p className="text-sm text-muted mt-1">
                           {servico.descricao}
                         </p>
-                        <p className="text-sm font-medium text-primary mt-1">
+                        <p className="text-sm font-medium text-primary mt-2">
                           {servico.duracao} • {servico.preco}
                         </p>
                       </div>

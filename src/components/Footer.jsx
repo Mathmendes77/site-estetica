@@ -1,32 +1,70 @@
+import { Link } from "react-router-dom";
+import { FaWhatsapp, FaInstagram, FaMapMarkerAlt } from "react-icons/fa";
+import { servicos } from "../data/Servicos";
+
 function Footer() {
+  const categorias = [...new Set(servicos.map((s) => s.categoria))];
+
   return (
-    <footer className="bg-primary-dark text-white px-10 py-15 mt-10">
-      <div className="max-w-6xl mx-auto grid gap-20 md:grid-cols-3">
+    <footer className="fixed bottom-0 left-0 w-full h-64 z-0 bg-white text-primary-dark border-t-4 border-primary-dark px-8 py-6 flex flex-col">
+      <div className="max-w-6xl mx-auto w-full grid gap-8 md:grid-cols-3 flex-1 content-center">
+        {/* Procedimentos */}
         <div>
-          <h3 className="font-display text-xl font-semibold mb-2">
-            Studio Mayra Batistela
-          </h3>
-          <p className="text-white/80 text-sm">
-            Estética com cuidado, precisão e carinho.
+          <h4 className="font-display text-2xl font-semibold mb-4">
+            Procedimentos
+          </h4>
+          <ul className="space-y-2">
+            {categorias.map((categoria) => (
+              <li key={categoria}>
+                <Link
+                  to="/servicos"
+                  className="text-base hover:opacity-70 transition"
+                >
+                  {categoria}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Horário de funcionamento */}
+        <div>
+          <h4 className="font-display text-2xl font-semibold mb-4">
+            Horário de funcionamento
+          </h4>
+          <p className="text-base">Segunda a Sábado</p>
+          <p className="text-base">09:00 às 18:00</p>
+        </div>
+
+        {/* Contato */}
+        <div>
+          <h4 className="font-display text-2xl font-semibold mb-4">
+            Contato
+          </h4>
+
+          <p className="flex items-center gap-2 text-base mb-1">
+            <FaWhatsapp className="text-primary-dark" size={18} />
+            (15) 99186-7827
           </p>
-        </div>
 
-        <div>
-          <h4 className="font-semibold mb-2">Contato</h4>
-          <p className="text-white/80 text-sm">WhatsApp: (15) 99999-9999</p>
-          <p className="text-white/80 text-sm">Porto Feliz - SP</p>
-        </div>
+          <p className="flex items-center gap-2 text-base mb-1">
+            <FaInstagram className="text-primary-dark" size={18} />
+            <a href="https://www.instagram.com/studiomayrabatistela/" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition">@studiomayrabatistela</a>
+          </p>
 
-        <div>
-          <h4 className="font-semibold mb-2">Horário de atendimento</h4>
-          <p className="text-white/80 text-sm">Segunda a Sexta</p>
-          <p className="text-white/80 text-sm">09:00 às 18:00</p>
+          <p className="flex items-center gap-2 text-base">
+            <FaMapMarkerAlt className="text-primary-dark" size={18} />
+            Porto Feliz - SP
+          </p>
         </div>
       </div>
 
-      <p className="text-center text-white/60 text-xs mt-8">
-        © {new Date().getFullYear()} Studio Mayra Batistela. Todos os direitos reservados.
-      </p>
+      <div className="max-w-6xl mx-auto w-full border-t border-primary-dark/30 pt-3">
+        <p className="text-center text-sm">
+          © {new Date().getFullYear()} Studio Mayra Batistela. Todos os
+          direitos reservados.
+        </p>
+      </div>
     </footer>
   );
 }

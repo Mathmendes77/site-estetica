@@ -1,96 +1,113 @@
-import FOTOSOBRE from "../assets/FOTOSOBRE.png";
+import { Link } from "react-router-dom";
+import MayraSobre from "../assets/MayraSobre.png";
 
 function Sobre() {
   return (
-    <main className="pt-28 pb-16 px-6 max-w-5xl mx-auto">
-      {/* Intro */}
-      <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
-        <img
-          src={FOTOSOBRE}
-          alt="Mayra Batistela, esteticista e designer de sobrancelhas"
-          className="rounded-3xl w-full h-[420px] object-cover shadow-lg"
-        />
+    <main className="bg-white">
+      {/* Hero */}
+      <section className="relative min-h-screen overflow-hidden bg-white grid md:grid-cols-2">
+        {/* Coluna do texto */}
+        <div className="flex items-center px-8 pt-32 pb-20 md:px-12 lg:px-16">
+          <div className="max-w-[540px]">
+            <h1 className="mb-6 font-display text-5xl font-semibold leading-[1] text-primary-dark md:text-6xl lg:text-7xl">
+              Conheça a Mayra
+            </h1>
 
-        <div>
-          <h1 className="font-display text-4xl md:text-5xl font-semibold text-neutral-800 leading-tight">
-            Conheça a Mayra
-          </h1>
-          <p className="mt-5 text-muted text-lg leading-relaxed">
-            Especialista em sobrancelha e estética facial, a Mayra atende cada
-            cliente com um olhar de cuidado que vai além da técnica. Design
-            personalizado, henna, hidratação labial e tratamentos faciais
-            pensados para valorizar sua beleza natural.
-          </p>
-          <p className="mt-4 text-muted text-lg leading-relaxed">
-            Mais do que um atendimento, uma experiência de autocuidado — no
-            Studio Mayra Batistela, em Porto Feliz.
-          </p>
-        </div>
-      </div>
+            <p className="mb-9 max-w-[500px] text-lg leading-relaxed text-muted md:text-xl">
+              Esteticista, designer de sobrancelhas e apaixonada por cuidar
+              de pessoas — dentro e fora do espelho.
+            </p>
 
-      {/* Quem sou eu */}
-      <section className="mb-20">
-        <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary-dark text-center mb-10">
-          Quem sou eu?
-        </h2>
+            <div className="max-w-[520px] space-y-5 text-base leading-7 text-muted md:text-lg md:leading-8">
+              <p>
+                Aos 33 anos, sou noiva, mãe de dois pets e apaixonada pela
+                vida em todas as suas fases. Sou Designer de Sobrancelhas,
+                graduanda em Estética e Cosmética e também Pedagoga — uma
+                combinação que trouxe ao meu trabalho um olhar técnico e, ao
+                mesmo tempo, muito humano.
+              </p>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {curiosidades.map((item) => (
-            <div
-              key={item.texto}
-              className="bg-white border border-secondary rounded-2xl p-5 text-center shadow-sm"
-            >
-              <p className="text-2xl mb-2">{item.emoji}</p>
-              <p className="text-neutral-700 text-sm leading-relaxed">
-                {item.texto}
+              <p>
+                Cada atendimento no Studio Mayra Batistela começa antes
+                mesmo da cliente chegar. Preparo cada detalhe com carinho,
+                dos materiais higienizados ao ambiente, porque acredito que
+                estética também é acolhimento.
+              </p>
+
+              <p>
+                Meu trabalho é guiado por ética, transparência, compromisso,
+                qualidade e, acima de tudo, respeito. Busco oferecer uma
+                experiência cuidadosa e resultados que façam cada cliente se
+                sentir ainda mais bonita, cuidada e confiante.
+              </p>
+
+              <div className="pt-3">
+                <h2 className="mb-4 font-display text-2xl font-semibold text-primary-dark md:text-3xl">
+                  Meus valores
+                </h2>
+                <div className="space-y-1 text-muted">
+                  <p>– Ética e transparência;</p>
+                  <p>– Compromisso com cada cliente;</p>
+                  <p>– Qualidade em cada procedimento;</p>
+                  <p>– Respeito e acolhimento.</p>
+                </div>
+              </div>
+
+              <p className="pt-3">
+                Também amo viajar, ler e estudar sempre mais sobre minha
+                profissão. Acredito que quem cuida também precisa continuar
+                aprendendo.
+              </p>
+
+              <p className="pt-2 font-display text-2xl font-semibold leading-relaxed text-primary-dark md:text-3xl">
+                No Studio Mayra Batistela, cada detalhe é pensado para você.
               </p>
             </div>
-          ))}
+          </div>
         </div>
+
+        {/* Coluna da foto */}
+        <div className="relative h-72 md:h-auto">
+          <img
+            src={MayraSobre}
+            alt="Mayra Batistela"
+            className="absolute inset-0 h-full w-full object-cover object-top"
+          />
+        </div>
+
+        {/* Curva de transição para a próxima seção */}
+        <svg
+          className="absolute bottom-[-1px] left-0 z-20 h-[130px] w-full"
+          viewBox="0 0 1440 130"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,75 C220,105 430,125 700,105 C950,85 1160,35 1440,0 L1440,130 L0,130 Z"
+            fill="white"
+          />
+        </svg>
       </section>
 
-      {/* Dia a dia no studio */}
-      <section className="bg-secondary/40 rounded-[2rem] p-8 md:p-12">
-        <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary-dark text-center mb-6">
-          Um dia no studio
+      {/* CTA final */}
+      <section className="bg-white py-24 px-6 text-center">
+        <h2 className="font-display text-4xl md:text-5xl font-semibold text-primary tracking-wide">
+          Desperte sua autoestima
         </h2>
-        <div className="max-w-3xl mx-auto space-y-4 text-muted text-lg leading-relaxed text-center">
-          <p>
-            Cada atendimento começa antes mesmo da cliente chegar: espaço
-            preparado, materiais higienizados e tudo pensado para receber com
-            cuidado. Mais do que um procedimento, é um momento de pausa na
-            rotina — um tempo só para ela.
-          </p>
-          <p>
-            Como esteticista e também graduanda em Estética e Cosmética, a
-            Mayra une técnica atualizada com aquele carinho no atendimento
-            que transforma uma cliente em alguém que sempre volta. Cada
-            sobrancelha, cada pele, é tratada de um jeito único.
-          </p>
-          <p>
-            No fim do dia, o que fica não é só o resultado no espelho — é a
-            confiança de quem saiu se sentindo mais bonita e cuidada.
-          </p>
-        </div>
+
+        <p className="mt-4 text-muted max-w-md mx-auto">
+          Reserve um momento só seu, venha se cuidar no Studio Mayra
+          Batistela.
+        </p>
+
+        <Link
+          to="/agendar"
+          className="inline-block mt-8 bg-primary-dark text-neutral-800 px-10 py-3.5 rounded-full font-medium hover:scale-105 hover:shadow-lg transition duration-200"
+        >
+          Agendar horário
+        </Link>
       </section>
     </main>
   );
 }
-
-const curiosidades = [
-  {  texto: "35 aninhos, casada e apaixonada pela vida" },
-  {  texto: "Mãe de dois pets e empreendedora" },
-  {
-    
-    texto:
-      "Designer de sobrancelha, graduanda em Estética e Cosmética e Pedagoga",
-  },
-  {  texto: "Amo viajar, ler e estudar" },
-  {  texto: "Amo estar com a família e amigos" },
-  {
-    
-    texto: "Tenho muito amor pela profissão e sempre busca fazer o seu melhor",
-  },
-];
 
 export default Sobre;

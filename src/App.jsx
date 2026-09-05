@@ -12,9 +12,6 @@ function App() {
       {/* Header fixo */}
       <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 py-4 bg-white border-b-4 border-primary-dark">
         <div className="flex items-center gap-2">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-dark text-neutral-800">
-            ♥
-          </span>
           <span className="font-display text-xl font-semibold text-neutral-800">
             Studio Mayra Batistela
           </span>
@@ -56,7 +53,7 @@ function App() {
       </nav>
 
       {/* Conteúdo das páginas — fundo branco cobrindo o footer fixo, com margem no final para revelá-lo */}
-      <div className="relative z-10 bg-white mb-72">
+      <div className="relative z-10 bg-white mb-80">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/sobre" element={<Sobre />} />
@@ -66,7 +63,7 @@ function App() {
         </Routes>
       </div>
 
-      
+      {/* Footer fixo, revelado no final do scroll */}
       <Footer />
     </BrowserRouter>
   );
