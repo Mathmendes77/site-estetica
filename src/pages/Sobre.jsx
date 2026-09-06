@@ -5,9 +5,9 @@ function Sobre() {
   return (
     <main className="bg-white">
       {/* Hero */}
-      <section className="relative min-h-screen overflow-hidden bg-white grid md:grid-cols-2">
+      <section className="relative min-h-screen overflow-hidden bg-white grid md:grid-cols-2 pt-24">
         {/* Coluna do texto */}
-        <div className="flex items-center px-8 pt-32 pb-20 md:px-12 lg:px-16">
+        <div className="flex items-center px-8 pb-20 md:px-12 lg:px-16">
           <div className="max-w-[540px]">
             <h1 className="mb-6 font-display text-5xl font-semibold leading-[1] text-primary-dark md:text-6xl lg:text-7xl">
               Conheça a Mayra

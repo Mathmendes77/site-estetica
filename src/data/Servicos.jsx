@@ -1,3 +1,12 @@
+import DesignPersonalizado from "../assets/DesignPersonalizado.png";
+import DesignHenna from "../assets/DesignHenna.png";
+import BrowLamination from "../assets/BrowLamination.png";
+import Tintura from "../assets/Tintura.png";
+import LimpezaDePele from "../assets/LimpezaDePele.png";
+import HydraGloss from "../assets/HydraGloss.png";
+import DesignPersonalizadoSobrancelha from "../assets/DesignPersonalizadoSobrancelha.png";
+import EpilacaoDeBuco from "../assets/EpilacaoDeBuco.png";
+
 export const servicos = [
   {
     id: 1,
@@ -6,7 +15,7 @@ export const servicos = [
     descricao: "Mapeamento facial para valorizar seu formato de rosto.",
     duracao: "45min",
     preco: "a consultar",
-    foto: "https://picsum.photos/id/64/200/200",
+    foto: DesignPersonalizado,
   },
   {
     id: 2,
@@ -15,7 +24,7 @@ export const servicos = [
     descricao: "Definição natural e duradoura para as sobrancelhas.",
     duracao: "50min",
     preco: "a consultar",
-    foto: "https://picsum.photos/id/65/200/200",
+    foto: DesignHenna,
   },
   {
     id: 3,
@@ -24,7 +33,7 @@ export const servicos = [
     descricao: "Fios alinhados e volumosos, com efeito duradouro.",
     duracao: "1h",
     preco: "a consultar",
-    foto: "https://picsum.photos/id/66/200/200",
+    foto: BrowLamination,
   },
   {
     id: 4,
@@ -33,7 +42,7 @@ export const servicos = [
     descricao: "Realça a cor natural dos fios, dando mais destaque ao olhar.",
     duracao: "30min",
     preco: "a consultar",
-    foto: "https://picsum.photos/id/67/200/200",
+    foto: Tintura,
   },
   {
     id: 5,
@@ -42,7 +51,7 @@ export const servicos = [
     descricao: "Remove impurezas e renova a pele em profundidade.",
     duracao: "1h",
     preco: "a consultar",
-    foto: "https://picsum.photos/id/68/200/200",
+    foto: LimpezaDePele,
   },
   {
     id: 6,
@@ -51,7 +60,7 @@ export const servicos = [
     descricao: "Hidratação profunda a longo prazo, rejuvenescendo os lábios.",
     duracao: "1h",
     preco: "a consultar",
-    foto: "https://picsum.photos/id/69/200/200",
+    foto: HydraGloss,
   },
   {
     id: 7,
@@ -60,7 +69,7 @@ export const servicos = [
     descricao: "Cuidado completo para lábios macios e bem definidos.",
     duracao: "50min",
     preco: "a consultar",
-    foto: "https://picsum.photos/id/70/200/200",
+    foto: DesignPersonalizadoSobrancelha,
   },
   {
     id: 8,
@@ -69,6 +78,6 @@ export const servicos = [
     descricao: "Remoção suave e precisa, com pele protegida.",
     duracao: "20min",
     preco: "a consultar",
-    foto: "https://picsum.photos/id/71/200/200",
+    foto: EpilacaoDeBuco,
   },
 ];
