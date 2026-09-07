@@ -6,8 +6,8 @@ function Footer() {
   const categorias = [...new Set(servicos.map((s) => s.categoria))];
 
   return (
-    <footer className="fixed bottom-0 left-0 w-full h-64 z-0 bg-primary text-white px-8 py-6 flex flex-col">
-      <div className="max-w-6xl mx-auto w-full grid gap-8 md:grid-cols-3 flex-1 content-center">
+    <footer className="static md:fixed md:bottom-0 md:left-0 w-full md:h-64 z-0 bg-primary text-white px-6 md:px-8 py-8 md:py-6 flex flex-col">
+      <div className="max-w-6xl mx-auto w-full grid gap-8 md:grid-cols-3 flex-1 md:content-center">
         {/* Procedimentos */}
         <div>
           <h4 className="font-display text-2xl font-semibold mb-4">
@@ -59,7 +59,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto w-full border-t border-white/30 pt-3">
+      <div className="max-w-6xl mx-auto w-full border-t border-white/30 pt-3 mt-6 md:mt-0">
         <p className="text-center text-sm text-white/80">
           © {new Date().getFullYear()} Studio Mayra Batistela. Todos os
           direitos reservados.

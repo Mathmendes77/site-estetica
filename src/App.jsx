@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
-import Home from "./pages/Home";
-import Sobre from "./pages/Sobre";
-import Servicos from "./pages/Servicos";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import Footer from "./components/Footer";
 import Agendamento from "./pages/Agendamento";
 import Confirmacao from "./pages/Confirmacao";
-import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Servicos from "./pages/Servicos";
+import Sobre from "./pages/Sobre";
 
 function App() {
   const [menuAberto, setMenuAberto] = useState(false);
@@ -27,10 +27,18 @@ function App() {
 
           {/* Links — só desktop */}
           <div className="hidden md:flex gap-8">
-            <Link to="/" className={linkClasses}>Início</Link>
-            <Link to="/sobre" className={linkClasses}>Sobre</Link>
-            <Link to="/servicos" className={linkClasses}>Serviços</Link>
-            <Link to="/agendar" className={linkClasses}>Agendar</Link>
+            <Link to="/" className={linkClasses}>
+              Início
+            </Link>
+            <Link to="/sobre" className={linkClasses}>
+              Sobre
+            </Link>
+            <Link to="/servicos" className={linkClasses}>
+              Serviços
+            </Link>
+            <Link to="/agendar" className={linkClasses}>
+              Agendar
+            </Link>
           </div>
 
           {/* CTA — só desktop */}
@@ -54,16 +62,32 @@ function App() {
         {/* Menu dropdown — só mobile, quando aberto */}
         {menuAberto && (
           <div className="md:hidden flex flex-col gap-4 px-6 pb-6 pt-2 bg-white border-t border-primary-dark/20">
-            <Link to="/" className={linkClasses} onClick={() => setMenuAberto(false)}>
+            <Link
+              to="/"
+              className={linkClasses}
+              onClick={() => setMenuAberto(false)}
+            >
               Início
             </Link>
-            <Link to="/sobre" className={linkClasses} onClick={() => setMenuAberto(false)}>
+            <Link
+              to="/sobre"
+              className={linkClasses}
+              onClick={() => setMenuAberto(false)}
+            >
               Sobre
             </Link>
-            <Link to="/servicos" className={linkClasses} onClick={() => setMenuAberto(false)}>
+            <Link
+              to="/servicos"
+              className={linkClasses}
+              onClick={() => setMenuAberto(false)}
+            >
               Serviços
             </Link>
-            <Link to="/agendar" className={linkClasses} onClick={() => setMenuAberto(false)}>
+            <Link
+              to="/agendar"
+              className={linkClasses}
+              onClick={() => setMenuAberto(false)}
+            >
               Agendar
             </Link>
             <Link
@@ -78,7 +102,7 @@ function App() {
       </nav>
 
       {/* Conteúdo das páginas */}
-      <div className="relative z-10 bg-white mb-64">
+      <div className="relative z-10 bg-white mb-0 md:mb-64">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/sobre" element={<Sobre />} />
