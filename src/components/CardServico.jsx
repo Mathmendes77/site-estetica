@@ -8,17 +8,17 @@ function CardServico({ servico }) {
         alt={servico.nome}
         className="w-full h-48 object-cover rounded-2xl mb-5"
       />
-      <h3 className="font-semibold text-lg">{servico.nome}</h3>
-      <p className="text-muted text-sm mt-2 mb-6 flex-1">
+      <h3 className="font-semibold text-lg text-neutral-800">{servico.nome}</h3>
+      <p className="text-neutral-600 text-sm mt-2 mb-6 flex-1">
         {servico.descricao}
       </p>
       <Link
-  to="/agendar"
-  state={{ servicoPreSelecionado: servico }}
-  className="block text-center bg-primary rounded-full py-3 font-medium text-neutral-800 hover:scale-105 hover:shadow-lg transition duration-200"
->
-  Agendar
-</Link>
+        to="/agendar"
+        state={{ servicoPreSelecionado: servico }}
+        className="block text-center bg-primary-dark text-white rounded-full py-3 font-medium hover:scale-105 hover:shadow-lg transition duration-200"
+      >
+        Agendar
+      </Link>
     </div>
   );
 }

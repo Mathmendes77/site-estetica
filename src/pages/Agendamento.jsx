@@ -42,12 +42,12 @@ function Agendamento() {
   return (
     <main className="pt-28 pb-16 px-6 max-w-2xl mx-auto">
       {/* Indicador de progresso */}
-      <p className="text-center text-sm text-muted mb-8">Passo {etapa} de 3</p>
+      <p className="text-center text-sm text-neutral-500 mb-8">Passo {etapa} de 3</p>
 
       {/* Etapa 1 — Escolher serviço */}
       {etapa === 1 && (
         <div>
-          <h1 className="font-display text-3xl font-semibold text-center mb-8">
+          <h1 className="font-display text-3xl font-semibold text-center mb-8 text-neutral-800">
             Escolha o serviço
           </h1>
 
@@ -76,11 +76,11 @@ function Agendamento() {
                         className="w-24 h-24 rounded-2xl object-cover flex-shrink-0"
                       />
                       <div className="flex-1">
-                        <p className="font-semibold text-lg">{servico.nome}</p>
-                        <p className="text-sm text-muted mt-1">
+                        <p className="font-semibold text-lg text-neutral-800">{servico.nome}</p>
+                        <p className="text-sm text-neutral-600 mt-1">
                           {servico.descricao}
                         </p>
-                        <p className="text-sm font-medium text-primary mt-2">
+                        <p className="text-sm font-medium text-primary-dark mt-2">
                           {servico.duracao} • {servico.preco}
                         </p>
                       </div>
@@ -93,7 +93,7 @@ function Agendamento() {
           <button
             disabled={!servicoSelecionado}
             onClick={() => setEtapa(2)}
-            className="mt-4 w-full bg-primary-dark text-white py-3 rounded-full font-medium disabled:opacity-40 disabled:cursor-not-allowed"
+            className="mt-4 w-full bg-primary-dark text-white py-3.5 rounded-full font-medium transition duration-200 hover:bg-neutral-900 hover:shadow-lg hover:scale-[1.01] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-primary-dark"
           >
             Próximo
           </button>
@@ -103,7 +103,7 @@ function Agendamento() {
       {/* Etapa 2 — Escolher data e horário */}
       {etapa === 2 && (
         <div>
-          <h1 className="font-display text-3xl font-semibold text-center mb-8">
+          <h1 className="font-display text-3xl font-semibold text-center mb-8 text-neutral-800">
             Escolha data e horário
           </h1>
 
@@ -114,18 +114,18 @@ function Agendamento() {
               alt={servicoSelecionado?.nome}
               className="w-12 h-12 rounded-lg object-cover"
             />
-            <p className="font-medium text-sm">{servicoSelecionado?.nome}</p>
+            <p className="font-medium text-sm text-neutral-800">{servicoSelecionado?.nome}</p>
           </div>
 
-          <label className="block mb-2 font-medium">Data</label>
+          <label className="block mb-2 font-medium text-neutral-700">Data</label>
           <input
             type="date"
             value={data}
             onChange={(e) => setData(e.target.value)}
-            className="w-full border border-neutral-300 rounded-xl p-3 mb-6"
+            className="w-full border border-neutral-300 rounded-xl p-3 mb-6 text-neutral-800 focus:outline-none focus:border-primary-dark"
           />
 
-          <label className="block mb-2 font-medium">Horário</label>
+          <label className="block mb-2 font-medium text-neutral-700">Horário</label>
           <div className="grid grid-cols-4 gap-3">
             {horariosDisponiveis.map((h) => (
               <button
@@ -133,8 +133,8 @@ function Agendamento() {
                 onClick={() => setHora(h)}
                 className={`py-2 rounded-lg border transition ${
                   hora === h
-                    ? "border-primary-dark bg-secondary"
-                    : "border-neutral-200 hover:border-primary"
+                    ? "border-primary-dark bg-secondary font-medium text-neutral-900"
+                    : "border-neutral-200 text-neutral-700 hover:border-primary-dark"
                 }`}
               >
                 {h}
@@ -145,14 +145,14 @@ function Agendamento() {
           <div className="flex gap-3 mt-8">
             <button
               onClick={() => setEtapa(1)}
-              className="flex-1 border border-neutral-300 py-3 rounded-full font-medium"
+              className="flex-1 border border-neutral-300 py-3 rounded-full font-medium text-neutral-700 hover:bg-neutral-50 transition duration-200"
             >
               Voltar
             </button>
             <button
               disabled={!data || !hora}
               onClick={() => setEtapa(3)}
-              className="flex-1 bg-primary-dark text-white py-3 rounded-full font-medium disabled:opacity-40 disabled:cursor-not-allowed"
+              className="flex-1 bg-primary-dark text-white py-3 rounded-full font-medium transition duration-200 hover:bg-neutral-900 hover:shadow-lg hover:scale-[1.01] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-primary-dark"
             >
               Próximo
             </button>
@@ -163,43 +163,43 @@ function Agendamento() {
       {/* Etapa 3 — Dados da cliente + confirmação */}
       {etapa === 3 && (
         <div>
-          <h1 className="font-display text-3xl font-semibold text-center mb-8">
+          <h1 className="font-display text-3xl font-semibold text-center mb-8 text-neutral-800">
             Seus dados
           </h1>
 
-          <label className="block mb-2 font-medium">Nome</label>
+          <label className="block mb-2 font-medium text-neutral-700">Nome</label>
           <input
             type="text"
             value={nome}
             onChange={(e) => setNome(e.target.value)}
-            className="w-full border border-neutral-300 rounded-xl p-3 mb-4"
+            className="w-full border border-neutral-300 rounded-xl p-3 mb-4 text-neutral-800 focus:outline-none focus:border-primary-dark"
             placeholder="Seu nome completo"
           />
 
-          <label className="block mb-2 font-medium">WhatsApp</label>
+          <label className="block mb-2 font-medium text-neutral-700">WhatsApp</label>
           <input
             type="tel"
             value={telefone}
             onChange={(e) => setTelefone(e.target.value)}
-            className="w-full border border-neutral-300 rounded-xl p-3 mb-6"
-            placeholder="(11) 90000-0000"
+            className="w-full border border-neutral-300 rounded-xl p-3 mb-6 text-neutral-800 focus:outline-none focus:border-primary-dark"
+            placeholder="(15) 90000-0000"
           />
 
           {/* Resumo antes de confirmar */}
-          <div className="flex items-center gap-3 bg-secondary rounded-xl p-4 mb-6 text-sm">
+          <div className="flex items-center gap-3 bg-secondary rounded-xl p-4 mb-6 text-sm text-neutral-700">
             <img
               src={servicoSelecionado?.foto}
               alt={servicoSelecionado?.nome}
               className="w-14 h-14 rounded-lg object-cover flex-shrink-0"
             />
             <div>
-              <p>
+              <p className="text-neutral-800">
                 <strong>Serviço:</strong> {servicoSelecionado?.nome}
               </p>
-              <p>
+              <p className="text-neutral-800">
                 <strong>Data:</strong> {data}
               </p>
-              <p>
+              <p className="text-neutral-800">
                 <strong>Horário:</strong> {hora}
               </p>
             </div>
@@ -208,14 +208,14 @@ function Agendamento() {
           <div className="flex gap-3">
             <button
               onClick={() => setEtapa(2)}
-              className="flex-1 border border-neutral-300 py-3 rounded-full font-medium"
+              className="flex-1 border border-neutral-300 py-3 rounded-full font-medium text-neutral-700 hover:bg-neutral-50 transition duration-200"
             >
               Voltar
             </button>
             <button
               disabled={!nome || !telefone}
               onClick={confirmarAgendamento}
-              className="flex-1 bg-primary-dark text-white py-3 rounded-full font-medium disabled:opacity-40 disabled:cursor-not-allowed"
+              className="flex-1 bg-primary-dark text-white py-3 rounded-full font-medium transition duration-200 hover:bg-neutral-900 hover:shadow-lg hover:scale-[1.01] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-primary-dark"
             >
               Confirmar agendamento
             </button>

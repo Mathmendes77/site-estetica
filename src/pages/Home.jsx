@@ -22,7 +22,7 @@ function Home() {
           </div>
 
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-neutral-800 leading-[1.15]">
-            A estética que realça a sua <span className="text-primary-dark italic font-normal">melhor versão</span>.
+            A estética que realça a sua <span className="text-primary-dark italic font-normal">melhor versão.</span>
           </h1>
 
           <p className="text-neutral-600 text-lg md:text-xl font-light leading-relaxed max-w-xl">
