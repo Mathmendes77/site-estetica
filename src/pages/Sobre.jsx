@@ -9,16 +9,16 @@ function Sobre() {
         {/* Coluna do texto */}
         <div className="flex items-center px-8 pb-20 md:px-12 lg:px-16">
           <div className="max-w-[540px]">
-            <h1 className="mb-6 font-display text-5xl font-semibold leading-[1] text-primary-dark md:text-6xl lg:text-7xl">
+            <h1 className="mb-6 font-display text-5xl font-semibold leading-[1.1] text-primary-dark md:text-6xl lg:text-7xl">
               Conheça a Mayra
             </h1>
 
-            <p className="mb-9 max-w-[500px] text-lg leading-relaxed text-muted md:text-xl">
+            <p className="mb-9 max-w-[500px] text-lg leading-relaxed text-neutral-600 md:text-xl font-light">
               Esteticista, designer de sobrancelhas e apaixonada por cuidar
               de pessoas — dentro e fora do espelho.
             </p>
 
-            <div className="max-w-[520px] space-y-5 text-base leading-7 text-muted md:text-lg md:leading-8">
+            <div className="max-w-[520px] space-y-5 text-base leading-7 text-neutral-600 md:text-lg md:leading-8">
               <p>
                 Aos 33 anos, sou noiva, mãe de dois pets e apaixonada pela
                 vida em todas as suas fases. Sou Designer de Sobrancelhas,
@@ -45,7 +45,7 @@ function Sobre() {
                 <h2 className="mb-4 font-display text-2xl font-semibold text-primary-dark md:text-3xl">
                   Meus valores
                 </h2>
-                <div className="space-y-1 text-muted">
+                <div className="space-y-1 text-neutral-600">
                   <p>– Ética e transparência;</p>
                   <p>– Compromisso com cada cliente;</p>
                   <p>– Qualidade em cada procedimento;</p>
@@ -90,18 +90,18 @@ function Sobre() {
 
       {/* CTA final */}
       <section className="bg-white py-24 px-6 text-center">
-        <h2 className="font-display text-4xl md:text-5xl font-semibold text-primary tracking-wide">
+        <h2 className="font-display text-4xl md:text-5xl font-semibold text-primary-dark tracking-wide">
           Desperte sua autoestima
         </h2>
 
-        <p className="mt-4 text-muted max-w-md mx-auto">
+        <p className="mt-4 text-neutral-600 max-w-md mx-auto">
           Reserve um momento só seu, venha se cuidar no Studio Mayra
           Batistela.
         </p>
 
         <Link
           to="/agendar"
-          className="inline-block mt-8 bg-primary-dark text-neutral-800 px-10 py-3.5 rounded-full font-medium hover:scale-105 hover:shadow-lg transition duration-200"
+          className="inline-block mt-8 bg-primary-dark text-white px-10 py-3.5 rounded-full font-medium shadow-md hover:shadow-lg hover:-translate-y-0.5 transition duration-200"
         >
           Agendar horário
         </Link>
