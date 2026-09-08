@@ -199,9 +199,6 @@ function Home() {
       {/* CTA FINAL */}
       <section className="px-6 py-24 md:py-32 bg-white border-t border-neutral-100">
         <div className="max-w-2xl mx-auto text-center">
-          <p className="font-display italic text-lg text-[#EEBBBB] mb-4">
-            Seu momento começa aqui
-          </p>
           <h2 className="font-display text-4xl md:text-5xl font-bold leading-tight text-neutral-800">
             Reserve um tempo
             <span className="block font-normal italic text-[#EEBBBB]">

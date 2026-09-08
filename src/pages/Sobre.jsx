@@ -14,53 +14,40 @@ function Sobre() {
             </h1>
 
             <p className="mb-9 max-w-[500px] text-lg leading-relaxed text-neutral-600 md:text-xl font-light">
-              Esteticista, designer de sobrancelhas e apaixonada por cuidar
-              de pessoas — dentro e fora do espelho.
+              Esteticista, pedagoga e apaixonada por cuidar de pessoas, fazendo você se sentir ainda mais confiante por dentro e por fora.
             </p>
 
             <div className="max-w-[520px] space-y-5 text-base leading-7 text-neutral-600 md:text-lg md:leading-8">
               <p>
-                Aos 33 anos, sou noiva, mãe de dois pets e apaixonada pela
-                vida em todas as suas fases. Sou Designer de Sobrancelhas,
-                graduanda em Estética e Cosmética e também Pedagoga — uma
-                combinação que trouxe ao meu trabalho um olhar técnico e, ao
-                mesmo tempo, muito humano.
+                Aos 35 anos, sou casada, mãe de dois pets e encontro alegria nos detalhes mais simples da vida. Minha trajetória une duas grandes vocações: sou pedagoga de formação e esteticista por amor. Essa mistura me trouxe um olhar que vai muito além da técnica; é sobre escuta, sensibilidade e acolhimento genuíno.
               </p>
 
               <p>
-                Cada atendimento no Studio Mayra Batistela começa antes
-                mesmo da cliente chegar. Preparo cada detalhe com carinho,
-                dos materiais higienizados ao ambiente, porque acredito que
-                estética também é acolhimento.
+                No Studio Mayra Batistela, cada atendimento começa muito antes de você chegar. Cuido de cada mínimo detalhe, do ambiente aconchegante à escolha dos produtos, porque acredito que a verdadeira estética caminha junto com o bem-estar e o respeito à sua essência.
               </p>
 
               <p>
-                Meu trabalho é guiado por ética, transparência, compromisso,
-                qualidade e, acima de tudo, respeito. Busco oferecer uma
-                experiência cuidadosa e resultados que façam cada cliente se
-                sentir ainda mais bonita, cuidada e confiante.
+                Minha missão é guiar cada procedimento com ética, transparência e muita dedicação. Quero que o nosso espaço seja o seu refúgio, um lugar onde você possa desacelerar da rotina e sair renovada, com a autoestima nas alturas.
               </p>
 
               <div className="pt-3">
                 <h2 className="mb-4 font-display text-2xl font-semibold text-primary-dark md:text-3xl">
                   Meus valores
                 </h2>
-                <div className="space-y-1 text-neutral-600">
-                  <p>– Ética e transparência;</p>
-                  <p>– Compromisso com cada cliente;</p>
-                  <p>– Qualidade em cada procedimento;</p>
-                  <p>– Respeito e acolhimento.</p>
+                <div className="space-y-2 text-neutral-600">
+                  <p>- Ética e total transparência em cada escolha.</p>
+                  <p>- Compromisso genuíno com o seu bem-estar.</p>
+                  <p>- Excelência e qualidade em cada procedimento.</p>
+                  <p>- Respeito, carinho e acolhimento em primeiro lugar.</p>
                 </div>
               </div>
 
               <p className="pt-3">
-                Também amo viajar, ler e estudar sempre mais sobre minha
-                profissão. Acredito que quem cuida também precisa continuar
-                aprendendo.
+                Fora daqui, você provavelmente vai me encontrar viajando, lendo um bom livro ou estudando novas técnicas para entregar sempre o melhor. Afinal, quem ama cuidar do outro nunca pára de aprender.
               </p>
 
               <p className="pt-2 font-display text-2xl font-semibold leading-relaxed text-primary-dark md:text-3xl">
-                No Studio Mayra Batistela, cada detalhe é pensado para você.
+                No Studio Mayra Batistela, cada detalhe é pensado exclusivamente para você.
               </p>
             </div>
           </div>
@@ -95,8 +82,7 @@ function Sobre() {
         </h2>
 
         <p className="mt-4 text-neutral-600 max-w-md mx-auto">
-          Reserve um momento só seu, venha se cuidar no Studio Mayra
-          Batistela.
+          Reserve um momento só seu, venha se cuidar no Studio Mayra Batistela.
         </p>
 
         <Link
