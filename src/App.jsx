@@ -38,12 +38,12 @@ function App() {
     <BrowserRouter>
       <ScrollToTop />
       
-      {/* Header Fixo com Efeito de Vidro e Transição Suave */}
+      {/* Header Fixo */}
       <header 
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           scrolled 
-            ? "bg-white/90 backdrop-blur-md shadow-sm py-2.5 border-b border-neutral-100" 
-            : "bg-white/70 backdrop-blur-sm py-4 border-b border-transparent"
+            ? "bg-white/95 backdrop-blur-md shadow-sm py-3 border-b border-neutral-100" 
+            : "bg-white/90 backdrop-blur-sm py-4 border-b border-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12">
@@ -65,7 +65,7 @@ function App() {
             <Link to="/agendar" className={linkClasses}>Agendar</Link>
           </nav>
 
-          {/* CTA Desktop com Botão Maior */}
+          {/* CTA Desktop */}
           <div className="hidden md:block">
             <Link
               to="/agendar"
@@ -85,63 +85,44 @@ function App() {
           </button>
         </div>
 
-        {/* Menu Mobile Fullscreen Otimizado sem necessidade de scroll */}
+        {/* Menu Dropdown Mobile Elegante (Logo abaixo do Header) */}
         <div 
-          className={`fixed inset-0 bg-white/98 backdrop-blur-xl z-40 flex flex-col items-center justify-center py-16 px-6 transition-all duration-300 md:hidden ${
+          className={`absolute top-full left-0 w-full bg-white/98 backdrop-blur-xl border-b border-neutral-100 shadow-lg transition-all duration-300 overflow-hidden md:hidden ${
             menuAberto 
-              ? "opacity-100 pointer-events-auto translate-y-0" 
-              : "opacity-0 pointer-events-none -translate-y-4"
+              ? "max-h-96 opacity-100 py-6" 
+              : "max-h-0 opacity-0 py-0 pointer-events-none"
           }`}
         >
-          {/* Botão de Fechar absoluto no topo direito */}
-          <button 
-            onClick={() => setMenuAberto(false)}
-            className="absolute top-5 right-6 text-primary-dark text-2xl p-2"
-            aria-label="Fechar menu"
-          >
-            <FaTimes />
-          </button>
-
-          <div className="flex flex-col items-center gap-5 text-center">
+          <div className="flex flex-col items-center gap-5 text-center px-6">
             <Link 
               to="/" 
-              className="font-display text-xl text-neutral-800 hover:text-primary-dark transition"
+              className="font-medium text-lg text-neutral-800 hover:text-primary-dark transition"
               onClick={() => setMenuAberto(false)}
             >
               Início
             </Link>
             <Link 
               to="/sobre" 
-              className="font-display text-xl text-neutral-800 hover:text-primary-dark transition"
+              className="font-medium text-lg text-neutral-800 hover:text-primary-dark transition"
               onClick={() => setMenuAberto(false)}
             >
               Sobre
             </Link>
             <Link 
               to="/servicos" 
-              className="font-display text-xl text-neutral-800 hover:text-primary-dark transition"
+              className="font-medium text-lg text-neutral-800 hover:text-primary-dark transition"
               onClick={() => setMenuAberto(false)}
             >
               Serviços
             </Link>
             <Link 
               to="/agendar" 
-              className="font-display text-xl text-neutral-800 hover:text-primary-dark transition"
+              className="font-medium text-lg text-neutral-800 hover:text-primary-dark transition"
               onClick={() => setMenuAberto(false)}
             >
               Agendar
             </Link>
           </div>
-
-          <div className="w-36 h-[1px] bg-neutral-200 my-6" />
-
-          <Link
-            to="/agendar"
-            onClick={() => setMenuAberto(false)}
-            className="bg-primary-dark text-white px-8 py-3 rounded-full font-medium text-sm shadow-md transition w-full max-w-xs text-center"
-          >
-            Agendar horário
-          </Link>
         </div>
       </header>
 
