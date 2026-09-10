@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { servicos } from "../data/Servicos";
+import { useServicos } from "../hooks/UseServicos";
+import { supabase } from "../services/SupaBaseCliente";
 
 const horariosDisponiveis = [
   "09:00",
@@ -16,6 +17,7 @@ const horariosDisponiveis = [
 function Agendamento() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { servicos, carregando } = useServicos();
 
   // Se veio um serviço pré-selecionado da página de Serviços, já começa na Etapa 2
   const servicoPreSelecionado = location.state?.servicoPreSelecionado;
@@ -28,12 +30,73 @@ function Agendamento() {
   const [hora, setHora] = useState("");
   const [nome, setNome] = useState("");
   const [telefone, setTelefone] = useState("");
+  const [enviando, setEnviando] = useState(false);
+  const [erroEnvio, setErroEnvio] = useState(null);
+  const [horariosOcupados, setHorariosOcupados] = useState([]);
+  const [carregandoHorarios, setCarregandoHorarios] = useState(false);
 
   const categorias = [...new Set(servicos.map((s) => s.categoria))];
 
-  function confirmarAgendamento() {
-    // Por enquanto só navega pra confirmação levando os dados junto.
-    // Na Fase 9, aqui entra o insert real no Supabase.
+  // Sempre que a data mudar, busca os horários já ocupados nesse dia
+  useEffect(() => {
+    if (!data) {
+      setHorariosOcupados([]);
+      return;
+    }
+
+    async function buscarHorariosOcupados() {
+      setCarregandoHorarios(true);
+      const { data: ocupados, error } = await supabase.rpc(
+        "horarios_ocupados",
+        { dia: data }
+      );
+
+      if (!error && ocupados) {
+        // O Supabase retorna hora como "15:00:00", normalizamos pra "15:00"
+        setHorariosOcupados(ocupados.map((o) => o.hora.slice(0, 5)));
+      }
+
+      setCarregandoHorarios(false);
+    }
+
+    buscarHorariosOcupados();
+  }, [data]);
+
+  // Se o horário escolhido ficou ocupado (ex: cliente mudou a data depois de escolher), desmarca
+  useEffect(() => {
+    if (hora && horariosOcupados.includes(hora)) {
+      setHora("");
+    }
+  }, [horariosOcupados, hora]);
+
+  async function confirmarAgendamento() {
+    setEnviando(true);
+    setErroEnvio(null);
+
+    const { error } = await supabase.from("appointments").insert({
+      service_id: servicoSelecionado.id,
+      nome_cliente: nome,
+      telefone: telefone,
+      data: data,
+      hora: hora,
+    });
+
+    setEnviando(false);
+
+    if (error) {
+      if (error.code === "23505") {
+        setErroEnvio(
+          "Esse horário acabou de ser reservado por outra pessoa. Escolha outro horário."
+        );
+        setEtapa(2);
+      } else {
+        setErroEnvio(
+          "Não foi possível confirmar o agendamento. Tente novamente."
+        );
+      }
+      return;
+    }
+
     navigate("/agendar/confirmacao", {
       state: { servicoSelecionado, data, hora, nome, telefone },
     });
@@ -51,44 +114,49 @@ function Agendamento() {
             Escolha o serviço
           </h1>
 
-          {categorias.map((categoria) => (
-            <div key={categoria} className="mb-8">
-              <h2 className="font-display text-xl font-semibold text-primary-dark mb-4">
-                {categoria}
-              </h2>
+          {carregando && (
+            <p className="text-center text-neutral-500 py-10">Carregando serviços...</p>
+          )}
 
-              <div className="space-y-4">
-                {servicos
-                  .filter((s) => s.categoria === categoria)
-                  .map((servico) => (
-                    <button
-                      key={servico.id}
-                      onClick={() => setServicoSelecionado(servico)}
-                      className={`w-full flex items-center gap-5 text-left p-5 rounded-2xl border transition duration-200 hover:shadow-[0_0_30px_-10px_rgba(238,187,187,0.8)] hover:-translate-y-0.5 ${
-                        servicoSelecionado?.id === servico.id
-                          ? "border-primary-dark bg-secondary shadow-[0_0_25px_-8px_rgba(238,187,187,0.7)]"
-                          : "border-neutral-200"
-                      }`}
-                    >
-                      <img
-                        src={servico.foto}
-                        alt={servico.nome}
-                        className="w-24 h-24 rounded-2xl object-cover flex-shrink-0"
-                      />
-                      <div className="flex-1">
-                        <p className="font-semibold text-lg text-neutral-800">{servico.nome}</p>
-                        <p className="text-sm text-neutral-600 mt-1">
-                          {servico.descricao}
-                        </p>
-                        <p className="text-sm font-medium text-primary-dark mt-2">
-                          {servico.duracao} • {servico.preco}
-                        </p>
-                      </div>
-                    </button>
-                  ))}
+          {!carregando &&
+            categorias.map((categoria) => (
+              <div key={categoria} className="mb-8">
+                <h2 className="font-display text-xl font-semibold text-primary-dark mb-4">
+                  {categoria}
+                </h2>
+
+                <div className="space-y-4">
+                  {servicos
+                    .filter((s) => s.categoria === categoria)
+                    .map((servico) => (
+                      <button
+                        key={servico.id}
+                        onClick={() => setServicoSelecionado(servico)}
+                        className={`w-full flex items-center gap-5 text-left p-5 rounded-2xl border transition duration-200 hover:shadow-[0_0_30px_-10px_rgba(238,187,187,0.8)] hover:-translate-y-0.5 ${
+                          servicoSelecionado?.id === servico.id
+                            ? "border-primary-dark bg-secondary shadow-[0_0_25px_-8px_rgba(238,187,187,0.7)]"
+                            : "border-neutral-200"
+                        }`}
+                      >
+                        <img
+                          src={servico.foto}
+                          alt={servico.nome}
+                          className="w-24 h-24 rounded-2xl object-cover flex-shrink-0"
+                        />
+                        <div className="flex-1">
+                          <p className="font-semibold text-lg text-neutral-800">{servico.nome}</p>
+                          <p className="text-sm text-neutral-600 mt-1">
+                            {servico.descricao}
+                          </p>
+                          <p className="text-sm font-medium text-primary-dark mt-2">
+                            {servico.duracao} • {servico.preco}
+                          </p>
+                        </div>
+                      </button>
+                    ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
 
           <button
             disabled={!servicoSelecionado}
@@ -107,7 +175,6 @@ function Agendamento() {
             Escolha data e horário
           </h1>
 
-          {/* Confirma qual serviço foi escolhido, pra não perder o contexto */}
           <div className="flex items-center gap-3 bg-secondary rounded-xl p-3 mb-6">
             <img
               src={servicoSelecionado?.foto}
@@ -126,20 +193,31 @@ function Agendamento() {
           />
 
           <label className="block mb-2 font-medium text-neutral-700">Horário</label>
+
+          {carregandoHorarios && (
+            <p className="text-sm text-neutral-500 mb-3">Verificando horários disponíveis...</p>
+          )}
+
           <div className="grid grid-cols-4 gap-3">
-            {horariosDisponiveis.map((h) => (
-              <button
-                key={h}
-                onClick={() => setHora(h)}
-                className={`py-2 rounded-lg border transition ${
-                  hora === h
-                    ? "border-primary-dark bg-secondary font-medium text-neutral-900"
-                    : "border-neutral-200 text-neutral-700 hover:border-primary-dark"
-                }`}
-              >
-                {h}
-              </button>
-            ))}
+            {horariosDisponiveis.map((h) => {
+              const ocupado = horariosOcupados.includes(h);
+              return (
+                <button
+                  key={h}
+                  disabled={ocupado}
+                  onClick={() => setHora(h)}
+                  className={`py-2 rounded-lg border transition ${
+                    ocupado
+                      ? "border-neutral-200 text-neutral-300 line-through cursor-not-allowed bg-neutral-50"
+                      : hora === h
+                      ? "border-primary-dark bg-secondary font-medium text-neutral-900"
+                      : "border-neutral-200 text-neutral-700 hover:border-primary-dark"
+                  }`}
+                >
+                  {h}
+                </button>
+              );
+            })}
           </div>
 
           <div className="flex gap-3 mt-8">
@@ -185,7 +263,6 @@ function Agendamento() {
             placeholder="(15) 90000-0000"
           />
 
-          {/* Resumo antes de confirmar */}
           <div className="flex items-center gap-3 bg-secondary rounded-xl p-4 mb-6 text-sm text-neutral-700">
             <img
               src={servicoSelecionado?.foto}
@@ -205,6 +282,10 @@ function Agendamento() {
             </div>
           </div>
 
+          {erroEnvio && (
+            <p className="text-red-500 text-sm mb-4 text-center">{erroEnvio}</p>
+          )}
+
           <div className="flex gap-3">
             <button
               onClick={() => setEtapa(2)}
@@ -213,11 +294,11 @@ function Agendamento() {
               Voltar
             </button>
             <button
-              disabled={!nome || !telefone}
+              disabled={!nome || !telefone || enviando}
               onClick={confirmarAgendamento}
               className="flex-1 bg-primary-dark text-white py-3 rounded-full font-medium transition duration-200 hover:bg-neutral-900 hover:shadow-lg hover:scale-[1.01] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-primary-dark"
             >
-              Confirmar agendamento
+              {enviando ? "Enviando..." : "Confirmar agendamento"}
             </button>
           </div>
         </div>

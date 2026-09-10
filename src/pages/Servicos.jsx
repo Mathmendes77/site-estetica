@@ -1,4 +1,4 @@
-import { servicos } from "../data/Servicos";
+import { useServicos } from "../hooks/UseServicos";
 import CardServico from "../components/CardServico";
 
 /* Ondulação lateral decorativa, com as cores que já existem no seu    */
@@ -28,6 +28,7 @@ function OndaLateral({ lado = "left" }) {
 }
 
 function Servicos() {
+  const { servicos, carregando, erro } = useServicos();
   const categorias = [...new Set(servicos.map((s) => s.categoria))];
 
   return (
@@ -45,33 +46,45 @@ function Servicos() {
           </p>
         </div>
 
-        {categorias.map((categoria) => {
-          const servicosDaCategoria = servicos.filter(
-            (s) => s.categoria === categoria
-          );
+        {carregando && (
+          <p className="text-center text-neutral-500 py-10">Carregando serviços...</p>
+        )}
 
-          return (
-            <section key={categoria} className="mb-20">
-              <div className="flex items-center gap-4 mb-8">
-                <h2 className="font-display text-2xl md:text-3xl font-semibold text-neutral-800">
-                  {categoria}
-                </h2>
-                <span className="flex-1 h-px bg-primary-dark/30" />
-              </div>
+        {erro && (
+          <p className="text-center text-red-500 py-10">
+            Não foi possível carregar os serviços. Tente novamente mais tarde.
+          </p>
+        )}
 
-              <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:overflow-visible sm:pb-0">
-                {servicosDaCategoria.map((servico) => (
-                  <div
-                    key={servico.id}
-                    className="snap-start shrink-0 w-[85%] sm:w-auto sm:shrink sm:snap-align-none"
-                  >
-                    <CardServico servico={servico} />
-                  </div>
-                ))}
-              </div>
-            </section>
-          );
-        })}
+        {!carregando &&
+          !erro &&
+          categorias.map((categoria) => {
+            const servicosDaCategoria = servicos.filter(
+              (s) => s.categoria === categoria
+            );
+
+            return (
+              <section key={categoria} className="mb-20">
+                <div className="flex items-center gap-4 mb-8">
+                  <h2 className="font-display text-2xl md:text-3xl font-semibold text-neutral-800">
+                    {categoria}
+                  </h2>
+                  <span className="flex-1 h-px bg-primary-dark/30" />
+                </div>
+
+                <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:overflow-visible sm:pb-0">
+                  {servicosDaCategoria.map((servico) => (
+                    <div
+                      key={servico.id}
+                      className="snap-start shrink-0 w-[85%] sm:w-auto sm:shrink sm:snap-align-none"
+                    >
+                      <CardServico servico={servico} />
+                    </div>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
       </main>
     </div>
   );

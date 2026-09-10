@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import { FaLeaf, FaCertificate, FaHandsHelping } from "react-icons/fa";
 import mayra from "../assets/mayra.png";
 import MayraSobre from "../assets/MayraSobre.png";
-import { servicos } from "../data/Servicos";
+import { useServicos } from "../hooks/UseServicos";
 import CardServico from "../components/CardServico";
 
 function Home() {
+  const { servicos, carregando } = useServicos();
   const servicosDestaque = servicos.slice(0, 4);
 
   return (
@@ -134,11 +135,15 @@ function Home() {
             </Link>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {servicosDestaque.map((servico) => (
-              <CardServico key={servico.id} servico={servico} />
-            ))}
-          </div>
+          {carregando ? (
+            <p className="text-center text-neutral-500 py-10">Carregando serviços...</p>
+          ) : (
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {servicosDestaque.map((servico) => (
+                <CardServico key={servico.id} servico={servico} />
+              ))}
+            </div>
+          )}
 
           <div className="mt-12 text-center md:hidden">
             <Link
