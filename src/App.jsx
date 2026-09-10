@@ -32,7 +32,7 @@ function App() {
   }, []);
 
   const linkClasses =
-    "text-neutral-700 hover:text-primary-dark font-medium text-sm tracking-wide transition-all duration-200 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary-dark hover:after:w-full after:transition-all";
+    "text-neutral-300 hover:text-[#EEBBBB] font-medium text-sm tracking-wide transition-all duration-200 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#EEBBBB] hover:after:w-full after:transition-all";
 
   return (
     <BrowserRouter>
@@ -42,18 +42,19 @@ function App() {
       <header 
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           scrolled 
-            ? "bg-white/95 backdrop-blur-md shadow-sm py-3 border-b border-neutral-100" 
-            : "bg-white/90 backdrop-blur-sm py-4 border-b border-transparent"
+            ? "bg-neutral-950/95 backdrop-blur-md shadow-lg py-3 border-b border-neutral-900" 
+            : "bg-neutral-950/90 backdrop-blur-sm py-4 border-b border-neutral-900/50"
         }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12">
           
-          {/* Logo em Imagem */}
+          {/* Logo em Imagem com Cor Rosa */}
           <Link to="/" className="flex items-center gap-3 group py-0.5">
             <img 
               src={logoStudio} 
               alt="Studio Mayra Batistela" 
-              className="h-12 md:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+              className="h-12 md:h-16 w-auto object-contain transition-all duration-300 group-hover:scale-105" 
+              style={{ filter: "drop-shadow(0 0 10px rgba(238, 187, 187, 0.4))" }}
             />
           </Link>
 
@@ -69,7 +70,7 @@ function App() {
           <div className="hidden md:block">
             <Link
               to="/agendar"
-              className="bg-primary-dark hover:opacity-90 text-white text-base font-medium px-7 py-3 rounded-full shadow-sm hover:shadow-md transition-all duration-200"
+              className="bg-[#EEBBBB] hover:bg-[#e8aaaa] text-neutral-950 text-base font-semibold px-7 py-3 rounded-full shadow-[0_0_20px_rgba(238,187,187,0.15)] hover:shadow-[0_0_25px_rgba(238,187,187,0.3)] transition-all duration-200"
             >
               Agendar horário
             </Link>
@@ -78,7 +79,7 @@ function App() {
           {/* Botão Hambúrguer — Mobile */}
           <button
             onClick={() => setMenuAberto(!menuAberto)}
-            className="md:hidden text-primary-dark text-2xl transition z-50 p-2"
+            className="md:hidden text-[#EEBBBB] text-2xl transition z-50 p-2"
             aria-label="Menu"
           >
             {menuAberto ? <FaTimes /> : <FaBars />}
@@ -87,7 +88,7 @@ function App() {
 
         {/* Menu Dropdown Mobile Elegante (Logo abaixo do Header) */}
         <div 
-          className={`absolute top-full left-0 w-full bg-white/98 backdrop-blur-xl border-b border-neutral-100 shadow-lg transition-all duration-300 overflow-hidden md:hidden ${
+          className={`absolute top-full left-0 w-full bg-neutral-950/98 backdrop-blur-xl border-b border-neutral-900 shadow-xl transition-all duration-300 overflow-hidden md:hidden ${
             menuAberto 
               ? "max-h-96 opacity-100 py-6" 
               : "max-h-0 opacity-0 py-0 pointer-events-none"
@@ -96,28 +97,28 @@ function App() {
           <div className="flex flex-col items-center gap-5 text-center px-6">
             <Link 
               to="/" 
-              className="font-medium text-lg text-neutral-800 hover:text-primary-dark transition"
+              className="font-medium text-lg text-neutral-200 hover:text-[#EEBBBB] transition"
               onClick={() => setMenuAberto(false)}
             >
               Início
             </Link>
             <Link 
               to="/sobre" 
-              className="font-medium text-lg text-neutral-800 hover:text-primary-dark transition"
+              className="font-medium text-lg text-neutral-200 hover:text-[#EEBBBB] transition"
               onClick={() => setMenuAberto(false)}
             >
               Sobre
             </Link>
             <Link 
               to="/servicos" 
-              className="font-medium text-lg text-neutral-800 hover:text-primary-dark transition"
+              className="font-medium text-lg text-neutral-200 hover:text-[#EEBBBB] transition"
               onClick={() => setMenuAberto(false)}
             >
               Serviços
             </Link>
             <Link 
               to="/agendar" 
-              className="font-medium text-lg text-neutral-800 hover:text-primary-dark transition"
+              className="font-medium text-lg text-neutral-200 hover:text-[#EEBBBB] transition"
               onClick={() => setMenuAberto(false)}
             >
               Agendar
@@ -127,7 +128,7 @@ function App() {
       </header>
 
       {/* Conteúdo das páginas */}
-      <div className="relative z-10 bg-white">
+      <div className="relative z-10 bg-neutral-950 text-neutral-100 min-h-screen">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/sobre" element={<Sobre />} />
