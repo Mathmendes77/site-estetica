@@ -16,6 +16,23 @@ const horariosDisponiveis = [
 
 const REGEX_TELEFONE = /^\(?\d{2}\)?\s?9\d{4}-?\d{4}$/;
 
+// Retorna a data de hoje no formato "YYYY-MM-DD", respeitando o fuso local
+function getDataDeHoje() {
+  const agora = new Date();
+  const ano = agora.getFullYear();
+  const mes = String(agora.getMonth() + 1).padStart(2, "0");
+  const dia = String(agora.getDate()).padStart(2, "0");
+  return `${ano}-${mes}-${dia}`;
+}
+
+// Retorna a hora atual no formato "HH:MM"
+function getHoraAtual() {
+  const agora = new Date();
+  const h = String(agora.getHours()).padStart(2, "0");
+  const m = String(agora.getMinutes()).padStart(2, "0");
+  return `${h}:${m}`;
+}
+
 function Agendamento() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -37,8 +54,10 @@ function Agendamento() {
   const [carregandoHorarios, setCarregandoHorarios] = useState(false);
 
   const categorias = [...new Set(servicos.map((s) => s.categoria))];
-
   const telefoneValido = REGEX_TELEFONE.test(telefone.trim());
+
+  const dataMinima = getDataDeHoje();
+  const ehHoje = data === dataMinima;
 
   useEffect(() => {
     if (!data) {
@@ -63,15 +82,28 @@ function Agendamento() {
     buscarHorariosOcupados();
   }, [data]);
 
+  // Desmarca o horário se ele ficou ocupado ou se ficou no passado
+  // (ex: cliente demorou pra escolher e o horário que ele tinha marcado já passou)
   useEffect(() => {
-    if (hora && horariosOcupados.includes(hora)) {
+    if (!hora) return;
+
+    const jaPassou = ehHoje && hora <= getHoraAtual();
+    if (horariosOcupados.includes(hora) || jaPassou) {
       setHora("");
     }
-  }, [horariosOcupados, hora]);
+  }, [horariosOcupados, hora, ehHoje]);
 
   async function confirmarAgendamento() {
     if (!telefoneValido) {
-      setErroEnvio("Digite um telefone válido, com DDD. Ex: (15) 99786-2828");
+      setErroEnvio("Digite um telefone válido, com DDD. Ex: (15) 99186-7827");
+      return;
+    }
+
+    // Segunda checagem de segurança: garante que a data/hora ainda não passou
+    // no momento exato do envio (não só no momento da seleção)
+    if (data < getDataDeHoje() || (data === getDataDeHoje() && hora <= getHoraAtual())) {
+      setErroEnvio("Esse horário já passou. Escolha uma data e horário futuros.");
+      setEtapa(2);
       return;
     }
 
@@ -198,6 +230,7 @@ function Agendamento() {
             <input
               type="date"
               value={data}
+              min={dataMinima}
               onChange={(e) => setData(e.target.value)}
               className="w-full border border-neutral-800 bg-neutral-900 rounded-xl p-3 mb-6 text-white focus:outline-none focus:border-[#EEBBBB] [color-scheme:dark]"
             />
@@ -211,14 +244,17 @@ function Agendamento() {
             <div className="grid grid-cols-4 gap-3">
               {horariosDisponiveis.map((h) => {
                 const ocupado = horariosOcupados.includes(h);
+                const jaPassou = ehHoje && h <= getHoraAtual();
+                const indisponivel = ocupado || jaPassou;
+
                 return (
                   <button
                     key={h}
                     type="button"
-                    disabled={ocupado}
+                    disabled={indisponivel}
                     onClick={() => setHora(h)}
                     className={`py-2 rounded-lg border transition ${
-                      ocupado
+                      indisponivel
                         ? "border-neutral-800 text-neutral-600 line-through cursor-not-allowed bg-neutral-900/40"
                         : hora === h
                         ? "border-[#EEBBBB] bg-neutral-900 font-medium text-[#EEBBBB] shadow-[0_0_15px_rgba(238,187,187,0.15)]"
@@ -230,6 +266,12 @@ function Agendamento() {
                 );
               })}
             </div>
+
+            {ehHoje && (
+              <p className="text-xs text-neutral-500 mt-3">
+                Horários já passados hoje aparecem indisponíveis.
+              </p>
+            )}
 
             <div className="flex gap-3 mt-8">
               <button
