@@ -14,7 +14,7 @@ const horariosDisponiveis = [
   "17:00",
 ];
 
-const REGEX_TELEFONE = /^\(?\d{2}\)?\s?9?\d{4}-?\d{4}$/;
+const REGEX_TELEFONE = /^\(?\d{2}\)?\s?9\d{4}-?\d{4}$/;
 
 function Agendamento() {
   const navigate = useNavigate();
