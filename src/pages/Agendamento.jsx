@@ -267,12 +267,6 @@ function Agendamento() {
               })}
             </div>
 
-            {ehHoje && (
-              <p className="text-xs text-neutral-500 mt-3">
-                Horários já passados hoje aparecem indisponíveis.
-              </p>
-            )}
-
             <div className="flex gap-3 mt-8">
               <button
                 type="button"
