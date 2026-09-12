@@ -71,7 +71,7 @@ function Agendamento() {
 
   async function confirmarAgendamento() {
     if (!telefoneValido) {
-      setErroEnvio("Digite um telefone válido, com DDD. Ex: (15) 99186-7827");
+      setErroEnvio("Digite um telefone válido, com DDD. Ex: (15) 99786-2828");
       return;
     }
 
