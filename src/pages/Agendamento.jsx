@@ -14,6 +14,8 @@ const horariosDisponiveis = [
   "17:00",
 ];
 
+const REGEX_TELEFONE = /^\(?\d{2}\)?\s?9?\d{4}-?\d{4}$/;
+
 function Agendamento() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -35,6 +37,8 @@ function Agendamento() {
   const [carregandoHorarios, setCarregandoHorarios] = useState(false);
 
   const categorias = [...new Set(servicos.map((s) => s.categoria))];
+
+  const telefoneValido = REGEX_TELEFONE.test(telefone.trim());
 
   useEffect(() => {
     if (!data) {
@@ -66,13 +70,18 @@ function Agendamento() {
   }, [horariosOcupados, hora]);
 
   async function confirmarAgendamento() {
+    if (!telefoneValido) {
+      setErroEnvio("Digite um telefone válido, com DDD. Ex: (15) 99186-7827");
+      return;
+    }
+
     setEnviando(true);
     setErroEnvio(null);
 
     const { error } = await supabase.from("appointments").insert({
       service_id: servicoSelecionado.id,
       nome_cliente: nome,
-      telefone: telefone,
+      telefone: telefone.trim(),
       data: data,
       hora: hora,
     });
@@ -85,6 +94,8 @@ function Agendamento() {
           "Esse horário acabou de ser reservado por outra pessoa. Escolha outro horário."
         );
         setEtapa(2);
+      } else if (error.code === "23514") {
+        setErroEnvio("Digite um telefone válido, com DDD. Ex: (15) 99186-7827");
       } else {
         setErroEnvio(
           "Não foi possível confirmar o agendamento. Tente novamente."
@@ -260,12 +271,24 @@ function Agendamento() {
             <input
               type="tel"
               value={telefone}
-              onChange={(e) => setTelefone(e.target.value)}
-              className="w-full border border-neutral-800 bg-neutral-900 rounded-xl p-3 mb-6 text-white focus:outline-none focus:border-[#EEBBBB]"
-              placeholder="(15) 90000-0000"
+              onChange={(e) => {
+                setTelefone(e.target.value);
+                if (erroEnvio) setErroEnvio(null);
+              }}
+              className={`w-full border rounded-xl p-3 text-white bg-neutral-900 focus:outline-none ${
+                telefone && !telefoneValido
+                  ? "border-red-500 focus:border-red-500"
+                  : "border-neutral-800 focus:border-[#EEBBBB]"
+              }`}
+              placeholder="(15) 99186-7827"
             />
+            {telefone && !telefoneValido && (
+              <p className="text-red-400 text-xs mt-1.5">
+                Formato esperado: (DDD) 9XXXX-XXXX
+              </p>
+            )}
 
-            <div className="flex items-center gap-3 bg-neutral-900 border border-neutral-800 rounded-xl p-4 mb-6 text-sm text-neutral-300">
+            <div className="flex items-center gap-3 bg-neutral-900 border border-neutral-800 rounded-xl p-4 mt-6 mb-6 text-sm text-neutral-300">
               <img
                 src={servicoSelecionado?.foto}
                 alt={servicoSelecionado?.nome}
@@ -298,7 +321,7 @@ function Agendamento() {
               </button>
               <button
                 type="button"
-                disabled={!nome || !telefone || enviando}
+                disabled={!nome || !telefoneValido || enviando}
                 onClick={confirmarAgendamento}
                 className="flex-1 bg-[#EEBBBB] text-neutral-950 font-semibold py-3 rounded-full transition duration-200 hover:bg-[#e8aaaa] hover:shadow-[0_0_20px_rgba(238,187,187,0.2)] disabled:opacity-40 disabled:cursor-not-allowed"
               >
