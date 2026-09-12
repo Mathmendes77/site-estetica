@@ -66,7 +66,7 @@ function App() {
             <Link to="/agendar" className={linkClasses}>Agendar</Link>
           </nav>
 
-          {/* CTA Desktop */}
+          {/* sessao final Desktop */}
           <div className="hidden md:block">
             <Link
               to="/agendar"
@@ -76,7 +76,7 @@ function App() {
             </Link>
           </div>
 
-          {/* Botão Hambúrguer — Mobile */}
+          {/* Botão para o menu celular */}
           <button
             onClick={() => setMenuAberto(!menuAberto)}
             className="md:hidden text-[#EEBBBB] text-2xl transition z-50 p-2"
@@ -86,7 +86,7 @@ function App() {
           </button>
         </div>
 
-        {/* Menu Dropdown Mobile Elegante (Logo abaixo do Header) */}
+        {/* Menu para o celular com a logo abaixo do header */}
         <div 
           className={`absolute top-full left-0 w-full bg-neutral-950/98 backdrop-blur-xl border-b border-neutral-900 shadow-xl transition-all duration-300 overflow-hidden md:hidden ${
             menuAberto 

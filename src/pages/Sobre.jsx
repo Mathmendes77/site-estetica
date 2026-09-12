@@ -17,9 +17,7 @@ function Sobre() {
   return (
     <main className="overflow-x-hidden bg-neutral-950 text-neutral-100">
 
-      {/* =========================================================
-          01 — HERO
-      ========================================================== */}
+      {/* sessao hero da pagina sobre */}
       <section className="border-b border-neutral-900 bg-neutral-950">
 
         <div className="mx-auto max-w-7xl px-6 pb-20 pt-28 sm:px-8 md:pb-28 md:pt-32 lg:px-12 lg:pt-36">
@@ -71,9 +69,7 @@ function Sobre() {
             </div>
 
 
-            {/* =====================================================
-                FOTO — NOVA ESTILIZAÇÃO
-            ====================================================== */}
+            {/* foto com estilizacao */}
             <div className="order-1 flex justify-center lg:order-2 lg:justify-end">
 
               <div className="relative w-full max-w-[520px]">
@@ -124,7 +120,7 @@ function Sobre() {
                     "
                   />
 
-                  {/* Escurecimento extremamente sutil */}
+                  {/* estilizacao para escurecer */}
                   <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/20 via-transparent to-transparent" />
 
                 </div>
@@ -150,9 +146,7 @@ function Sobre() {
       </section>
 
 
-      {/* =========================================================
-          02 — HISTÓRIA + VALORES
-      ========================================================== */}
+      {/* sessao contando a história e valores */}
       <section className="bg-[#111111]">
 
         <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 md:py-24 lg:px-12">
@@ -288,9 +282,7 @@ function Sobre() {
       </section>
 
 
-      {/* =========================================================
-          03 — CTA FINAL
-      ========================================================== */}
+      {/* sessao final com o convite para agendar um horário */}
       <section className="border-t border-neutral-900 bg-neutral-950">
 
         <div className="mx-auto max-w-4xl px-6 py-24 text-center md:py-28">
