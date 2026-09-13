@@ -14,23 +14,40 @@ const horariosDisponiveis = [
   "17:00",
 ];
 
-const REGEX_TELEFONE = /^\(?\d{2}\)?\s?9\d{4}-?\d{4}$/;
+// Todos os DDDs que realmente existem no Brasil
+const DDDS_VALIDOS = [
+  "11", "12", "13", "14", "15", "16", "17", "18", "19",
+  "21", "22", "24", "27", "28",
+  "31", "32", "33", "34", "35", "37", "38",
+  "41", "42", "43", "44", "45", "46", "47", "48", "49",
+  "51", "53", "54", "55",
+  "61", "62", "63", "64", "65", "66", "67", "68", "69",
+  "71", "73", "74", "75", "77", "79",
+  "81", "82", "83", "84", "85", "86", "87", "88", "89",
+  "91", "92", "93", "94", "95", "96", "97", "98", "99",
+];
 
-// Retorna a data de hoje no formato "YYYY-MM-DD", respeitando o fuso local
-function getDataDeHoje() {
-  const agora = new Date();
-  const ano = agora.getFullYear();
-  const mes = String(agora.getMonth() + 1).padStart(2, "0");
-  const dia = String(agora.getDate()).padStart(2, "0");
-  return `${ano}-${mes}-${dia}`;
-}
+// Valida um telefone celular brasileiro de forma mais rigorosa que um regex simples:
+// verifica DDD real, presença do 9 e recusa números com o mesmo dígito repetido
+function telefoneEhValido(telefoneDigitado) {
+  const apenasDigitos = telefoneDigitado.replace(/\D/g, "");
 
-// Retorna a hora atual no formato "HH:MM"
-function getHoraAtual() {
-  const agora = new Date();
-  const h = String(agora.getHours()).padStart(2, "0");
-  const m = String(agora.getMinutes()).padStart(2, "0");
-  return `${h}:${m}`;
+  // Precisa ter exatamente 11 dígitos: DDD (2) + 9 + número (8)
+  if (apenasDigitos.length !== 11) return false;
+
+  const ddd = apenasDigitos.slice(0, 2);
+  if (!DDDS_VALIDOS.includes(ddd)) return false;
+
+  const nono = apenasDigitos[2];
+  if (nono !== "9") return false;
+
+  const numero = apenasDigitos.slice(3); // os 8 dígitos finais
+
+  // Recusa números onde os 8 dígitos são todos iguais (ex: 99999999, 11111111)
+  const mesmoDigitoRepetido = /^(\d)\1{7}$/.test(numero);
+  if (mesmoDigitoRepetido) return false;
+
+  return true;
 }
 
 function Agendamento() {
@@ -54,7 +71,22 @@ function Agendamento() {
   const [carregandoHorarios, setCarregandoHorarios] = useState(false);
 
   const categorias = [...new Set(servicos.map((s) => s.categoria))];
-  const telefoneValido = REGEX_TELEFONE.test(telefone.trim());
+  const telefoneValido = telefoneEhValido(telefone);
+
+  const getDataDeHoje = () => {
+    const agora = new Date();
+    const ano = agora.getFullYear();
+    const mes = String(agora.getMonth() + 1).padStart(2, "0");
+    const dia = String(agora.getDate()).padStart(2, "0");
+    return `${ano}-${mes}-${dia}`;
+  };
+
+  const getHoraAtual = () => {
+    const agora = new Date();
+    const h = String(agora.getHours()).padStart(2, "0");
+    const m = String(agora.getMinutes()).padStart(2, "0");
+    return `${h}:${m}`;
+  };
 
   const dataMinima = getDataDeHoje();
   const ehHoje = data === dataMinima;
@@ -82,8 +114,6 @@ function Agendamento() {
     buscarHorariosOcupados();
   }, [data]);
 
-  // Desmarca o horário se ele ficou ocupado ou se ficou no passado
-  // (ex: cliente demorou pra escolher e o horário que ele tinha marcado já passou)
   useEffect(() => {
     if (!hora) return;
 
@@ -99,8 +129,6 @@ function Agendamento() {
       return;
     }
 
-    // Segunda checagem de segurança: garante que a data/hora ainda não passou
-    // no momento exato do envio (não só no momento da seleção)
     if (data < getDataDeHoje() || (data === getDataDeHoje() && hora <= getHoraAtual())) {
       setErroEnvio("Esse horário já passou. Escolha uma data e horário futuros.");
       setEtapa(2);
@@ -144,10 +172,8 @@ function Agendamento() {
   return (
     <main className="w-full pt-28 pb-16 px-6 bg-neutral-950 text-neutral-100 min-h-screen">
       <div className="max-w-2xl mx-auto">
-        {/* Indicador de progresso */}
         <p className="text-center text-sm text-neutral-400 mb-8">Passo {etapa} de 3</p>
 
-        {/* Etapa 1 — Escolher serviço */}
         {etapa === 1 && (
           <div>
             <h1 className="font-display text-3xl font-semibold text-center mb-8 text-white">
@@ -186,9 +212,7 @@ function Agendamento() {
                           />
                           <div className="flex-1">
                             <p className="font-semibold text-lg text-white">{servico.nome}</p>
-                            <p className="text-sm text-neutral-400 mt-1">
-                              {servico.descricao}
-                            </p>
+                            <p className="text-sm text-neutral-400 mt-1">{servico.descricao}</p>
                             <p className="text-sm font-medium text-[#EEBBBB] mt-2">
                               {servico.duracao} • {servico.preco}
                             </p>
@@ -210,7 +234,6 @@ function Agendamento() {
           </div>
         )}
 
-        {/* Etapa 2 — Escolher data e horário */}
         {etapa === 2 && (
           <div>
             <h1 className="font-display text-3xl font-semibold text-center mb-8 text-white">
@@ -267,6 +290,12 @@ function Agendamento() {
               })}
             </div>
 
+            {ehHoje && (
+              <p className="text-xs text-neutral-500 mt-3">
+                Horários já passados hoje aparecem indisponíveis.
+              </p>
+            )}
+
             <div className="flex gap-3 mt-8">
               <button
                 type="button"
@@ -287,7 +316,6 @@ function Agendamento() {
           </div>
         )}
 
-        {/* Etapa 3 — Dados da cliente + confirmação */}
         {etapa === 3 && (
           <div>
             <h1 className="font-display text-3xl font-semibold text-center mb-8 text-white">
@@ -320,7 +348,7 @@ function Agendamento() {
             />
             {telefone && !telefoneValido && (
               <p className="text-red-400 text-xs mt-1.5">
-                Formato esperado: (DDD) 9XXXX-XXXX
+                Digite um número de celular válido, com DDD real
               </p>
             )}
 
@@ -343,9 +371,7 @@ function Agendamento() {
               </div>
             </div>
 
-            {erroEnvio && (
-              <p className="text-red-400 text-sm mb-4 text-center">{erroEnvio}</p>
-            )}
+            {erroEnvio && <p className="text-red-400 text-sm mb-4 text-center">{erroEnvio}</p>}
 
             <div className="flex gap-3">
               <button
