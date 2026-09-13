@@ -1,6 +1,5 @@
 git pull
 git add .
-git commit -m "Alteracao de fontes nas paginas"
-git commit -m "ajuste no horario validado"
+git commit -m "-----"
 git push
 
