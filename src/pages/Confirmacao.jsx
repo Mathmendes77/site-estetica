@@ -4,7 +4,7 @@ function Confirmacao() {
   const location = useLocation();
   const dados = location.state;
 
-  // Se alguém acessar essa página direto, sem passar pelo fluxo, evita erro
+  // Se alguém acessar essa página direto sem passar pelo fluxo ela evita erro
   if (!dados) {
     return (
       <main className="w-full pt-32 pb-20 px-6 text-center bg-neutral-950 text-neutral-100 min-h-[70vh] flex flex-col items-center justify-center">
