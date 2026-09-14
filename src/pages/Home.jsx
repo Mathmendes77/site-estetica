@@ -1,11 +1,5 @@
 import { Link } from "react-router-dom";
-
-import {
-  FaLeaf,
-  FaCertificate,
-  FaHandsHelping,
-  FaArrowRight,
-} from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 
 import mayra from "../assets/mayra.png";
 import MayraSobre from "../assets/MayraSobre.png";
@@ -16,251 +10,255 @@ import CardServico from "../components/CardServico";
 function Home() {
   const { servicos, carregando } = useServicos();
 
-  // Pega apenas os 4 primeiros serviços para exibir como destaque na página inicial
+  // Pega só os 4 primeiros serviços pra mostrar em destaque na home
   const servicosDestaque = servicos.slice(0, 4);
 
   return (
-    <main className="overflow-x-hidden bg-neutral-950 text-white">
-      {/* seção principal para o hero com a foto e título do site */}
-      <section className="relative overflow-hidden border-b border-neutral-900">
-        <div className="mx-auto max-w-7xl px-6 pb-20 pt-20 sm:px-8 md:pb-24 md:pt-24 lg:px-12 lg:pt-28">
-          <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-            {/* Coluna da Esquerda: Textos, Chamada para Ação e Estatísticas */}
-            <div className="relative z-10 order-2 lg:order-1">
-              {/* Identificação da Marca */}
-              <div className="mb-7 flex items-center gap-3">
+    <main className="overflow-x-hidden bg-[#111111] text-white">
+
+      {/* HEADER / HERO */}
+      <section className="relative border-b border-white/[0.08]">
+        <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-16">
+          <div className="grid min-h-[680px] items-center gap-12 py-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 lg:py-20">
+            
+            {/* Texto principal do hero */}
+            <div className="order-2 max-w-xl lg:order-1">
+              <div className="mb-7 flex items-center gap-4">
                 <span className="h-px w-10 bg-[#EEBBBB]" />
-                <span className="text-[10px] uppercase tracking-[0.32em] text-[#EEBBBB]">
+                <span className="text-[10px] uppercase tracking-[0.35em] text-[#EEBBBB]">
                   Studio Mayra Batistela
                 </span>
               </div>
 
-              {/* Título Principal */}
-              <h1 className="max-w-2xl font-display text-5xl leading-[0.98] tracking-[-0.03em] sm:text-6xl md:text-7xl lg:text-[5.5rem]">
-                Sua beleza,
-                <span className="mt-2 block font-normal italic text-[#EEBBBB]">
-                  do seu jeito.
+              <h1 className="font-display text-5xl leading-[1.02] tracking-tight sm:text-6xl lg:text-[72px]">
+                Beleza que
+                <span className="block italic font-normal text-[#EEBBBB]">
+                  respeita você.
                 </span>
               </h1>
 
-              {/* pequena descrição */}
-              <p className="mt-7 max-w-lg text-sm leading-7 text-neutral-400 sm:text-base">
-                Estética e cuidados personalizados para valorizar sua beleza
-                natural e transformar seu momento de cuidado em uma experiência
-                única.
+              <p className="mt-7 max-w-md text-[15px] leading-7 text-neutral-400">
+                Estética facial e cuidados personalizados para valorizar
+                sua beleza natural com técnica, delicadeza e atenção
+                aos detalhes.
               </p>
 
-              {/* botão pra agendar e ver os serviços disponíveis do studio */}
+              {/* Botões de ação */}
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link
                   to="/agendar"
-                  className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#EEBBBB] px-7 py-4 text-sm font-semibold text-neutral-950 shadow-[0_12px_35px_rgba(238,187,187,0.10)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e8aaaa]"
+                  className="group inline-flex items-center justify-center gap-4 bg-[#EEBBBB] px-7 py-4 text-sm font-medium text-[#111111] rounded-full transition-all duration-300 hover:bg-[#e8aaaa]"
                 >
                   Agendar horário
                   <FaArrowRight
-                    size={12}
+                    size={11}
                     className="transition-transform duration-300 group-hover:translate-x-1"
                   />
                 </Link>
 
                 <Link
                   to="/servicos"
-                  className="inline-flex items-center justify-center rounded-full border border-neutral-700 px-7 py-4 text-sm text-neutral-300 transition-all duration-300 hover:border-[#EEBBBB]/60 hover:text-[#EEBBBB]"
+                  className="inline-flex items-center justify-center border border-white/15 px-7 py-4 text-sm text-neutral-300 rounded-full transition-all duration-300 hover:border-[#EEBBBB]/50 hover:text-[#EEBBBB]"
                 >
-                  Conhecer serviços
+                  Conhecer tratamentos
                 </Link>
-              </div>
-
-              {/* Números e Estatísticas Rápidas */}
-              <div className="mt-11 grid max-w-[470px] grid-cols-3 border-y border-neutral-800 py-5">
-                <div>
-                  <strong className="font-display text-2xl text-white">+8</strong>
-                  <span className="mt-1 block text-[9px] uppercase tracking-[0.18em] text-neutral-600">
-                    Procedimentos
-                  </span>
-                </div>
-
-                <div className="border-l border-neutral-800 pl-5">
-                  <strong className="font-display text-2xl text-white">100%</strong>
-                  <span className="mt-1 block text-[9px] uppercase tracking-[0.18em] text-neutral-600">
-                    Personalizado
-                  </span>
-                </div>
-
-                <div className="border-l border-neutral-800 pl-5">
-                  <strong className="font-display text-2xl text-white">5.0</strong>
-                  <span className="mt-1 block text-[9px] uppercase tracking-[0.18em] text-neutral-600">
-                    Experiência
-                  </span>
-                </div>
               </div>
             </div>
 
-            {/* Coluna da Direita com a foto de destaque */}
-            <div className="relative order-1 flex justify-center lg:order-2 lg:justify-end">
-              <div className="relative w-full max-w-[500px]">
-                {/* Linha decorativa lateral */}
-                <div className="absolute -left-5 top-16 z-20 h-16 w-px bg-[#EEBBBB]/70 sm:-left-7" />
-
-                {/* Moldura externa decorativa */}
-                <div className="absolute -right-4 -top-4 h-full w-full rounded-[220px_220px_28px_28px] border border-neutral-800 sm:-right-5 sm:-top-5" />
-
-                {/* Detalhe de linha superior */}
-                <div className="absolute right-10 top-7 z-20 h-px w-12 bg-[#EEBBBB]/70" />
-
-                {/* Container da Imagem com bordas arredondadas estilo arco */}
-                <div className="relative z-10 overflow-hidden rounded-[220px_220px_28px_28px] bg-neutral-900">
+            {/* Foto de destaque da Mayra */}
+            <div className="order-1 lg:order-2">
+              <div className="relative ml-auto max-w-[620px]">
+                <div className="absolute -right-5 -top-5 h-full w-full border border-white/[0.08]" />
+                <div className="relative h-[500px] overflow-hidden sm:h-[600px] lg:h-[650px]">
                   <img
                     src={mayra}
                     alt="Mayra Batistela"
-                    className="h-[500px] w-full object-cover object-top transition-transform duration-700 hover:scale-[1.015] sm:h-[600px] lg:h-[650px]"
+                    className="h-full w-full object-cover object-top"
                   />
                 </div>
 
-                {/* pequeno cardizinho em baixo da foto dela com a estética e beleza */}
-                <div className="absolute -bottom-5 left-8 z-20 bg-neutral-950 px-5 py-3">
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-[#EEBBBB]">
+                <div className="absolute bottom-0 left-0 bg-[#111111] px-6 py-5 sm:px-8">
+                  <p className="text-[9px] uppercase tracking-[0.3em] text-[#EEBBBB]">
                     Estética & beleza
-                  </span>
+                  </p>
+                  <p className="mt-1 text-sm text-neutral-300">
+                    Studio Mayra Batistela
+                  </p>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* primeira seção, para introduzir o studio e explicar o que ela faz e como funciona o trabalho dela */}
-      <section className="bg-[#111111]">
-        <div className="mx-auto max-w-5xl px-6 py-24 text-center md:py-28">
-          <div className="mx-auto mb-6 h-px w-12 bg-[#EEBBBB]" />
-
-          <span className="text-[10px] uppercase tracking-[0.35em] text-[#EEBBBB]">
-            Beleza • cuidado • naturalidade
-          </span>
-
-          <h2 className="mx-auto mt-6 max-w-4xl font-display text-3xl leading-tight sm:text-4xl md:text-5xl">
-            Mais que estética.
-            <span className="block font-normal italic text-[#EEBBBB]">
-              Um momento para você.
+      {/* FAIXA DE CONFIANÇA */}
+      <section className="border-b border-white/[0.08] bg-[#0d0d0d]">
+        <div className="mx-auto grid max-w-[1200px] grid-cols-2 lg:grid-cols-4">
+          <div className="border-b border-white/[0.08] px-6 py-7 lg:border-b-0 lg:border-r">
+            <span className="block text-xs uppercase tracking-[0.2em] text-neutral-500">
+              Atendimento
             </span>
-          </h2>
+            <strong className="mt-2 block font-display text-xl font-normal">
+              Personalizado
+            </strong>
+          </div>
 
-          <p className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-neutral-500 md:text-base">
-            Cada atendimento é pensado para proporcionar conforto, segurança e
-            resultados que respeitam a sua individualidade.
-          </p>
-        </div>
-      </section>
+          <div className="border-b border-white/[0.08] px-6 py-7 lg:border-b-0 lg:border-r">
+            <span className="block text-xs uppercase tracking-[0.2em] text-neutral-500">
+              Experiência
+            </span>
+            <strong className="mt-2 block font-display text-xl font-normal">
+              Técnica & cuidado
+            </strong>
+          </div>
 
-      {/* seção para mostrar os 3 pilares do studio com os ícones e textos explicando cada pilar, e também a decoração com as linhas e cores do site */}
-      <section className="border-y border-neutral-900 bg-neutral-950">
-        <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-24 lg:px-12">
-          <div className="grid md:grid-cols-3">
-            {/* Pilar 1: Atendimento */}
-            <div className="border-b border-neutral-800 py-9 md:border-b-0 md:pr-10">
-              <div className="mb-6 flex items-center gap-4">
-                <span className="text-[10px] tracking-[0.2em] text-[#EEBBBB]">01</span>
-                <span className="h-px w-8 bg-neutral-800" />
-              </div>
+          <div className="px-6 py-7 lg:border-r lg:border-white/[0.08]">
+            <span className="block text-xs uppercase tracking-[0.2em] text-neutral-500">
+              Procedimentos
+            </span>
+            <strong className="mt-2 block font-display text-xl font-normal">
+              +8 serviços
+            </strong>
+          </div>
 
-              <div className="mb-5 flex h-10 w-10 items-center justify-center border border-neutral-800">
-                <FaHandsHelping className="text-[#EEBBBB]" size={15} />
-              </div>
-
-              <h3 className="font-display text-2xl">Atendimento</h3>
-
-              <p className="mt-3 max-w-xs text-sm leading-6 text-neutral-500">
-                Um atendimento próximo, acolhedor e pensado especialmente para
-                você.
-              </p>
-            </div>
-
-            {/* Pilar 2: Experiência */}
-            <div className="border-b border-neutral-800 py-9 md:border-b-0 md:border-l md:px-10">
-              <div className="mb-6 flex items-center gap-4">
-                <span className="text-[10px] tracking-[0.2em] text-[#EEBBBB]">02</span>
-                <span className="h-px w-8 bg-neutral-800" />
-              </div>
-
-              <div className="mb-5 flex h-10 w-10 items-center justify-center border border-neutral-800">
-                <FaCertificate className="text-[#EEBBBB]" size={15} />
-              </div>
-
-              <h3 className="font-display text-2xl">Experiência</h3>
-
-              <p className="mt-3 max-w-xs text-sm leading-6 text-neutral-500">
-                Técnicas e produtos escolhidos de acordo com cada necessidade.
-              </p>
-            </div>
-
-            {/* Pilar 3: Naturalidade */}
-            <div className="py-9 md:border-l md:border-neutral-800 md:pl-10">
-              <div className="mb-6 flex items-center gap-4">
-                <span className="text-[10px] tracking-[0.2em] text-[#EEBBBB]">03</span>
-                <span className="h-px w-8 bg-neutral-800" />
-              </div>
-
-              <div className="mb-5 flex h-10 w-10 items-center justify-center border border-neutral-800">
-                <FaLeaf className="text-[#EEBBBB]" size={15} />
-              </div>
-
-              <h3 className="font-display text-2xl">Naturalidade</h3>
-
-              <p className="mt-3 max-w-xs text-sm leading-6 text-neutral-500">
-                Valorizamos sua beleza sem perder a sua essência.
-              </p>
-            </div>
+          <div className="px-6 py-7">
+            <span className="block text-xs uppercase tracking-[0.2em] text-neutral-500">
+              Resultado
+            </span>
+            <strong className="mt-2 block font-display text-xl font-normal">
+              Beleza natural
+            </strong>
           </div>
         </div>
       </section>
 
-      {/* seção de serviços com os cards de cada serviço e também a possibilidade de ver todos os serviços na página de serviços */}
+      {/* CATEGORIAS EM DESTAQUE */}
       <section className="bg-[#111111]">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32 lg:px-12">
-          {/* Cabeçalho da Seção com Título e Link para ver todos */}
-          <div className="mb-14 flex flex-col gap-7 md:flex-row md:items-end md:justify-between">
-            <div>
-              <div className="mb-4 flex items-center gap-3">
-                <span className="h-px w-8 bg-[#EEBBBB]" />
-                <span className="text-[10px] uppercase tracking-[0.28em] text-[#EEBBBB]">
-                  Especialidades
+        <div className="mx-auto max-w-[1280px] px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+          <div className="mb-16 max-w-2xl">
+            <div className="mb-5 flex items-center gap-3">
+              <span className="h-px w-8 bg-[#EEBBBB]" />
+              <span className="text-[10px] uppercase tracking-[0.3em] text-[#EEBBBB]">
+                Tratamentos
+              </span>
+            </div>
+
+            <h2 className="font-display text-4xl leading-tight sm:text-5xl">
+              Cuidados pensados
+              <span className="block italic font-normal text-[#EEBBBB]">
+                para você.
+              </span>
+            </h2>
+
+            <p className="mt-5 max-w-lg text-sm leading-7 text-neutral-500">
+              Procedimentos escolhidos para valorizar sua beleza,
+              respeitando suas características e suas necessidades.
+            </p>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-2">
+            {/* Categoria: Estética Facial */}
+            <Link
+              to="/servicos"
+              className="group relative min-h-[460px] overflow-hidden border border-white/[0.08] bg-[#151515]"
+            >
+              <div className="absolute inset-0">
+                <img
+                  src={MayraSobre}
+                  alt="Estética facial"
+                  className="h-full w-full object-cover object-top opacity-70 transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+              </div>
+
+              <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10">
+                <span className="text-[10px] uppercase tracking-[0.3em] text-[#EEBBBB]">
+                  01
+                </span>
+                <h3 className="mt-3 font-display text-3xl sm:text-4xl">
+                  Estética Facial
+                </h3>
+                <p className="mt-3 max-w-sm text-sm leading-6 text-neutral-300">
+                  Cuidados para pele, revitalização e valorização
+                  da beleza natural.
+                </p>
+                <span className="mt-6 inline-flex items-center gap-3 bg-[#EEBBBB] px-6 py-3 text-xs font-medium uppercase tracking-[0.2em] text-[#111111] rounded-full transition-all duration-300 group-hover:bg-[#e8aaaa]">
+                  Conhecer tratamentos
+                  <FaArrowRight size={10} />
                 </span>
               </div>
+            </Link>
 
-              <h2 className="font-display text-4xl leading-tight md:text-5xl">
-                Nossos serviços
+            {/* Categoria: Sobrancelhas */}
+            <Link
+              to="/servicos"
+              className="group relative min-h-[460px] overflow-hidden border border-white/[0.08] bg-[#151515]"
+            >
+              <div className="absolute inset-0">
+                <img
+                  src={mayra}
+                  alt="Design de sobrancelhas"
+                  className="h-full w-full object-cover object-top opacity-65 transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+              </div>
+
+              <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10">
+                <span className="text-[10px] uppercase tracking-[0.3em] text-[#EEBBBB]">
+                  02
+                </span>
+                <h3 className="mt-3 font-display text-3xl sm:text-4xl">
+                  Sobrancelhas
+                </h3>
+                <p className="mt-3 max-w-sm text-sm leading-6 text-neutral-300">
+                  Design personalizado para harmonizar o olhar
+                  e respeitar seus traços.
+                </p>
+                <span className="mt-6 inline-flex items-center gap-3 bg-[#EEBBBB] px-6 py-3 text-xs font-medium uppercase tracking-[0.2em] text-[#111111] rounded-full transition-all duration-300 group-hover:bg-[#e8aaaa]">
+                  Conhecer tratamentos
+                  <FaArrowRight size={10} />
+                </span>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVIÇOS EM DESTAQUE */}
+      <section className="border-y border-white/[0.08] bg-[#0d0d0d]">
+        <div className="mx-auto max-w-[1280px] px-6 py-24 sm:px-10 lg:px-16 lg:py-28">
+          <div className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <span className="text-[10px] uppercase tracking-[0.3em] text-[#EEBBBB]">
+                Escolhas do studio
+              </span>
+              <h2 className="mt-3 font-display text-3xl sm:text-4xl">
+                Procedimentos em destaque
               </h2>
-
-              <p className="mt-4 max-w-lg text-sm leading-7 text-neutral-500">
-                Procedimentos realizados com cuidado, técnica e atenção aos
-                detalhes.
-              </p>
             </div>
 
             <Link
               to="/servicos"
-              className="group inline-flex items-center gap-3 text-sm text-neutral-300 transition-colors duration-300 hover:text-[#EEBBBB]"
+              className="group flex items-center gap-3 text-sm text-neutral-400 transition-colors hover:text-[#EEBBBB]"
             >
               Ver todos os serviços
               <FaArrowRight
-                size={12}
-                className="transition-transform duration-300 group-hover:translate-x-1"
+                size={11}
+                className="transition-transform group-hover:translate-x-1"
               />
             </Link>
           </div>
 
-          {/* tela para mostrar que os serviços estão em carregamento */}
           {carregando ? (
-            <div className="py-16 text-center">
-              <p className="text-sm text-neutral-500">Carregando serviços...</p>
+            <div className="py-20 text-center text-sm text-neutral-500">
+              Carregando serviços...
             </div>
           ) : (
             <div className="grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {servicosDestaque.map((servico) => (
-                <div key={servico.id} className="group h-full">
-                  <div className="h-full transition-transform duration-300 group-hover:-translate-y-1 [&>*]:h-full">
-                    <CardServico servico={servico} />
-                  </div>
+                <div key={servico.id} className="h-full">
+                  <CardServico servico={servico} />
                 </div>
               ))}
             </div>
@@ -268,133 +266,195 @@ function Home() {
         </div>
       </section>
 
-      {/* seção de sobre e história do studio com as fotos e textos explicando sobre ela e o studio */}
-      <section className="border-t border-neutral-900 bg-neutral-950">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32 lg:px-12">
-          <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-24">
-            {/* coluna da esquerda com a imagem */}
-            <div className="relative min-h-[520px] sm:min-h-[600px]">
-              {/* Imagem Principal */}
-              <div className="absolute left-0 top-0 h-[78%] w-[68%] overflow-hidden bg-neutral-900">
-                <img
-                  src={mayra}
-                  alt="Mayra Batistela"
-                  className="h-full w-full object-cover object-top transition-transform duration-700 hover:scale-[1.015]"
-                />
-              </div>
+      {/* SOBRE A MAYRA */}
+      <section className="bg-[#111111]">
+        <div className="mx-auto grid max-w-[1280px] items-center gap-16 px-6 py-24 sm:px-10 lg:grid-cols-2 lg:gap-24 lg:px-16 lg:py-32">
+          {/* Fotos */}
+          <div className="relative min-h-[550px]">
+            <div className="absolute left-0 top-0 h-[78%] w-[70%] overflow-hidden">
+              <img
+                src={mayra}
+                alt="Mayra Batistela"
+                className="h-full w-full object-cover object-top"
+              />
+            </div>
 
-              {/* estilização para a primeira imagem na seção de sobre */}
-              <div className="absolute left-4 top-4 h-[78%] w-[68%] border border-neutral-700" />
+            <div className="absolute bottom-0 right-0 h-[52%] w-[52%] overflow-hidden border-[10px] border-[#111111]">
+              <img
+                src={MayraSobre}
+                alt="Studio Mayra Batistela"
+                className="h-full w-full object-cover object-top"
+              />
+            </div>
 
-              {/* div para segunda imagem da seção de sobre */}
-              <div className="absolute bottom-0 right-0 h-[55%] w-[52%] overflow-hidden border-8 border-neutral-950 bg-neutral-900">
-                <img
-                  src={MayraSobre}
-                  alt="Studio Mayra Batistela"
-                  className="h-full w-full object-cover object-top transition-transform duration-700 hover:scale-[1.015]"
-                />
-              </div>
+            <div className="absolute left-4 top-4 h-[78%] w-[70%] border border-white/15" />
+          </div>
 
-              {/* div para marcação e decoração no fundo, embaixo das imagens apenas */}
-              <div className="absolute bottom-[48%] left-[64%] hidden h-px w-20 bg-[#EEBBBB] sm:block" />
-              <span className="absolute bottom-5 left-0 font-display text-7xl text-[#EEBBBB]/5 sm:text-8xl">
-                MB
+          {/* Texto de apresentação */}
+          <div className="max-w-xl">
+            <div className="mb-5 flex items-center gap-3">
+              <span className="h-px w-8 bg-[#EEBBBB]" />
+              <span className="text-[10px] uppercase tracking-[0.3em] text-[#EEBBBB]">
+                Sobre o studio
               </span>
             </div>
 
-            {/* coluna para descrever o texto e também os valores na página */}
-            <div className="max-w-xl">
-              <div className="mb-5 flex items-center gap-3">
-                <span className="h-px w-8 bg-[#EEBBBB]" />
-                <span className="text-[10px] uppercase tracking-[0.28em] text-[#EEBBBB]">
-                  Sobre o studio
-                </span>
-              </div>
+            <h2 className="font-display text-4xl leading-tight sm:text-5xl">
+              Prazer,
+              <span className="block italic font-normal text-[#EEBBBB]">
+                sou a Mayra.
+              </span>
+            </h2>
 
-              <h2 className="font-display text-4xl leading-tight md:text-5xl">
-                Prazer,
-                <span className="mt-1 block font-normal italic text-[#EEBBBB]">
-                  sou a Mayra.
-                </span>
-              </h2>
+            <p className="mt-7 text-base leading-8 text-neutral-300">
+              Sou esteticista e designer de sobrancelhas,
+              apaixonada por realçar a beleza natural de cada mulher.
+            </p>
 
-              <p className="mt-7 text-base leading-7 text-neutral-300 md:text-lg">
-                Sou esteticista e designer de sobrancelhas, apaixonada por
-                realçar a beleza natural de cada mulher.
-              </p>
+            <p className="mt-5 text-sm leading-7 text-neutral-500">
+              Acredito que cada pessoa possui características únicas.
+              Por isso, meu trabalho é baseado em um atendimento
+              cuidadoso, personalizado e atento aos detalhes.
+            </p>
 
-              <p className="mt-5 leading-7 text-neutral-500">
-                Acredito que cuidar da aparência também é uma forma de cuidar
-                de si. Por isso, cada atendimento é pensado para ser leve,
-                acolhedor e especial.
-              </p>
-
-              {/* bloco de Valores com beleza natural e os cuidados */}
-              <div className="mt-9 grid grid-cols-2 border-t border-neutral-800 pt-7">
+            <div className="mt-9 border-t border-white/[0.08] pt-7">
+              <div className="grid grid-cols-2">
                 <div>
-                  <span className="font-display text-2xl text-[#EEBBBB]">Beleza</span>
-                  <p className="mt-1 text-[10px] uppercase tracking-[0.15em] text-neutral-600">
+                  <span className="font-display text-2xl text-[#EEBBBB]">
+                    Beleza
+                  </span>
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.2em] text-neutral-600">
                     Natural
                   </p>
                 </div>
 
-                <div className="border-l border-neutral-800 pl-6">
-                  <span className="font-display text-2xl text-[#EEBBBB]">Cuidado</span>
-                  <p className="mt-1 text-[10px] uppercase tracking-[0.15em] text-neutral-600">
+                <div className="border-l border-white/[0.08] pl-6">
+                  <span className="font-display text-2xl text-[#EEBBBB]">
+                    Cuidado
+                  </span>
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.2em] text-neutral-600">
                     Personalizado
                   </p>
                 </div>
               </div>
+            </div>
 
-              {/* botão para conhecer a página de sobre e história no site */}
-              <Link
-                to="/sobre"
-                className="group mt-9 inline-flex items-center gap-3 rounded-full bg-[#EEBBBB] px-7 py-4 text-sm font-semibold text-neutral-950 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e8aaaa]"
-              >
-                Conhecer minha história
-                <FaArrowRight
-                  size={12}
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                />
-              </Link>
+            <Link
+              to="/sobre"
+              className="group mt-9 inline-flex items-center gap-4 border-b border-[#EEBBBB] pb-2 text-sm text-white transition-colors hover:text-[#EEBBBB]"
+            >
+              Conhecer minha história
+              <FaArrowRight
+                size={11}
+                className="transition-transform group-hover:translate-x-1"
+              />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* EXPERIÊNCIA */}
+      <section className="border-y border-white/[0.08] bg-[#0d0d0d]">
+        <div className="mx-auto max-w-[1280px] px-6 py-24 sm:px-10 lg:px-16 lg:py-28">
+          <div className="grid gap-16 lg:grid-cols-[0.7fr_1.3fr]">
+            <div>
+              <span className="text-[10px] uppercase tracking-[0.3em] text-[#EEBBBB]">
+                Uma experiência diferente
+              </span>
+              <h2 className="mt-4 max-w-md font-display text-4xl leading-tight sm:text-5xl">
+                Cuidar de você também é prioridade.
+              </h2>
+            </div>
+
+            <div className="grid gap-0 sm:grid-cols-2">
+              <div className="border-b border-white/[0.08] py-7 sm:border-r sm:pr-10">
+                <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">
+                  Atendimento
+                </span>
+                <h3 className="mt-3 font-display text-2xl font-normal">
+                  Próximo e individual
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-neutral-500">
+                  Cada atendimento é realizado com atenção às
+                  suas necessidades e expectativas.
+                </p>
+              </div>
+
+              <div className="border-b border-white/[0.08] py-7 sm:pl-10">
+                <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">
+                  Cuidado
+                </span>
+                <h3 className="mt-3 font-display text-2xl font-normal">
+                  Em cada detalhe
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-neutral-500">
+                  Um ambiente pensado para proporcionar conforto,
+                  tranquilidade e confiança.
+                </p>
+              </div>
+
+              <div className="py-7 sm:border-r sm:pr-10">
+                <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">
+                  Técnica
+                </span>
+                <h3 className="mt-3 font-display text-2xl font-normal">
+                  Procedimentos personalizados
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-neutral-500">
+                  Técnicas escolhidas de acordo com cada pessoa,
+                  buscando resultados naturais.
+                </p>
+              </div>
+
+              <div className="py-7 sm:pl-10">
+                <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">
+                  Resultado
+                </span>
+                <h3 className="mt-3 font-display text-2xl font-normal">
+                  Você se reconhece
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-neutral-500">
+                  O objetivo não é transformar quem você é,
+                  mas valorizar aquilo que já existe.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* seção para chamar o cliente a reservar um horário */}
-      <section className="border-t border-neutral-900 bg-[#111111]">
-        <div className="mx-auto max-w-4xl px-6 py-28 text-center md:py-36">
-          <div className="mx-auto mb-7 h-px w-12 bg-[#EEBBBB]" />
-
-          <span className="text-[10px] uppercase tracking-[0.32em] text-[#EEBBBB]">
-            Seu momento começa aqui
+      {/* CTA FINAL */}
+      <section className="bg-[#111111]">
+        <div className="mx-auto max-w-4xl px-6 py-28 text-center sm:px-10 lg:py-36">
+          <span className="text-[10px] uppercase tracking-[0.35em] text-[#EEBBBB]">
+            Studio Mayra Batistela
           </span>
 
-          <h2 className="mt-5 font-display text-4xl leading-tight sm:text-5xl md:text-6xl">
-            Reserve um tempo
-            <span className="mt-1 block font-normal italic text-[#EEBBBB]">
-              para você.
+          <h2 className="mt-5 font-display text-4xl leading-tight sm:text-5xl lg:text-6xl">
+            Seu momento de
+            <span className="block italic font-normal text-[#EEBBBB]">
+              cuidado começa aqui.
             </span>
           </h2>
 
-          <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-neutral-500 md:text-base">
-            Permita-se desacelerar, cuidar de si e viver uma experiência
-            especial no Studio Mayra Batistela.
+          <p className="mx-auto mt-6 max-w-lg text-sm leading-7 text-neutral-500">
+            Escolha o procedimento ideal para você e agende seu
+            horário de forma simples e rápida.
           </p>
 
           <Link
             to="/agendar"
-            className="group mt-9 inline-flex items-center gap-3 rounded-full bg-[#EEBBBB] px-9 py-4 text-sm font-semibold text-neutral-950 shadow-[0_12px_35px_rgba(238,187,187,0.10)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e8aaaa]"
+            className="group mt-9 inline-flex items-center gap-4 bg-[#EEBBBB] px-8 py-4 text-sm font-medium text-[#111111] rounded-full transition-all duration-300 hover:bg-[#e8aaaa]"
           >
-            Agendar meu horário
+            Agendar horário
             <FaArrowRight
-              size={13}
-              className="transition-transform duration-300 group-hover:translate-x-1"
+              size={11}
+              className="transition-transform group-hover:translate-x-1"
             />
           </Link>
         </div>
       </section>
+
     </main>
   );
 }
