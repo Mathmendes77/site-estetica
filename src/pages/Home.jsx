@@ -15,7 +15,7 @@ function Home() {
 
   return (
     <main className="overflow-x-hidden bg-[#111111] text-white">
-      {/* HEADER / HERO */}
+      {/* HERO */}
       <section className="relative border-b border-white/[0.08]">
         <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-16">
           <div className="grid min-h-[680px] items-center gap-12 py-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 lg:py-20">
@@ -419,7 +419,7 @@ function Home() {
         </div>
       </section>
 
-      {/* CTA FINAL */}
+      {/* SESSAO FINAL */}
       <section className="bg-[#111111]">
         <div className="mx-auto max-w-4xl px-6 py-28 text-center sm:px-10 lg:py-36">
           <span className="text-[10px] uppercase tracking-[0.35em] text-[#EEBBBB]">
