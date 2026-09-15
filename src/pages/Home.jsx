@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 import mayra from "../assets/mayra.png";
 import MayraSobre from "../assets/MayraSobre.png";
 
-import { useServicos } from "../hooks/UseServicos";
 import CardServico from "../components/CardServico";
+import { useServicos } from "../hooks/UseServicos";
 
 function Home() {
   const { servicos, carregando } = useServicos();
@@ -15,12 +15,10 @@ function Home() {
 
   return (
     <main className="overflow-x-hidden bg-[#111111] text-white">
-
       {/* HEADER / HERO */}
       <section className="relative border-b border-white/[0.08]">
         <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-16">
           <div className="grid min-h-[680px] items-center gap-12 py-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 lg:py-20">
-            
             {/* Texto principal do hero */}
             <div className="order-2 max-w-xl lg:order-1">
               <div className="mb-7 flex items-center gap-4">
@@ -38,9 +36,8 @@ function Home() {
               </h1>
 
               <p className="mt-7 max-w-md text-[15px] leading-7 text-neutral-400">
-                Estética facial e cuidados personalizados para valorizar
-                sua beleza natural com técnica, delicadeza e atenção
-                aos detalhes.
+                Estética facial e cuidados personalizados para valorizar sua
+                beleza natural com técnica, delicadeza e atenção aos detalhes.
               </p>
 
               {/* Botões de ação */}
@@ -65,7 +62,7 @@ function Home() {
               </div>
             </div>
 
-            {/* Foto de destaque da Mayra */}
+            {/* Foto de destaque */}
             <div className="order-1 lg:order-2">
               <div className="relative ml-auto max-w-[620px]">
                 <div className="absolute -right-5 -top-5 h-full w-full border border-white/[0.08]" />
@@ -87,7 +84,6 @@ function Home() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -152,8 +148,8 @@ function Home() {
             </h2>
 
             <p className="mt-5 max-w-lg text-sm leading-7 text-neutral-500">
-              Procedimentos escolhidos para valorizar sua beleza,
-              respeitando suas características e suas necessidades.
+              Procedimentos escolhidos para valorizar sua beleza, respeitando
+              suas características e suas necessidades.
             </p>
           </div>
 
@@ -180,8 +176,8 @@ function Home() {
                   Estética Facial
                 </h3>
                 <p className="mt-3 max-w-sm text-sm leading-6 text-neutral-300">
-                  Cuidados para pele, revitalização e valorização
-                  da beleza natural.
+                  Cuidados para pele, revitalização e valorização da beleza
+                  natural.
                 </p>
                 <span className="mt-6 inline-flex items-center gap-3 bg-[#EEBBBB] px-6 py-3 text-xs font-medium uppercase tracking-[0.2em] text-[#111111] rounded-full transition-all duration-300 group-hover:bg-[#e8aaaa]">
                   Conhecer tratamentos
@@ -212,8 +208,8 @@ function Home() {
                   Sobrancelhas
                 </h3>
                 <p className="mt-3 max-w-sm text-sm leading-6 text-neutral-300">
-                  Design personalizado para harmonizar o olhar
-                  e respeitar seus traços.
+                  Design personalizado para harmonizar o olhar e respeitar seus
+                  traços.
                 </p>
                 <span className="mt-6 inline-flex items-center gap-3 bg-[#EEBBBB] px-6 py-3 text-xs font-medium uppercase tracking-[0.2em] text-[#111111] rounded-full transition-all duration-300 group-hover:bg-[#e8aaaa]">
                   Conhecer tratamentos
@@ -307,14 +303,14 @@ function Home() {
             </h2>
 
             <p className="mt-7 text-base leading-8 text-neutral-300">
-              Sou esteticista e designer de sobrancelhas,
-              apaixonada por realçar a beleza natural de cada mulher.
+              Sou esteticista e designer de sobrancelhas, apaixonada por realçar
+              a beleza natural de cada mulher.
             </p>
 
             <p className="mt-5 text-sm leading-7 text-neutral-500">
-              Acredito que cada pessoa possui características únicas.
-              Por isso, meu trabalho é baseado em um atendimento
-              cuidadoso, personalizado e atento aos detalhes.
+              Acredito que cada pessoa possui características únicas. Por isso,
+              meu trabalho é baseado em um atendimento cuidadoso, personalizado
+              e atento aos detalhes.
             </p>
 
             <div className="mt-9 border-t border-white/[0.08] pt-7">
@@ -375,8 +371,8 @@ function Home() {
                   Próximo e individual
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-neutral-500">
-                  Cada atendimento é realizado com atenção às
-                  suas necessidades e expectativas.
+                  Cada atendimento é realizado com atenção às suas necessidades
+                  e expectativas.
                 </p>
               </div>
 
@@ -388,8 +384,8 @@ function Home() {
                   Em cada detalhe
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-neutral-500">
-                  Um ambiente pensado para proporcionar conforto,
-                  tranquilidade e confiança.
+                  Um ambiente pensado para proporcionar conforto, tranquilidade
+                  e confiança.
                 </p>
               </div>
 
@@ -401,8 +397,8 @@ function Home() {
                   Procedimentos personalizados
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-neutral-500">
-                  Técnicas escolhidas de acordo com cada pessoa,
-                  buscando resultados naturais.
+                  Técnicas escolhidas de acordo com cada pessoa, buscando
+                  resultados naturais.
                 </p>
               </div>
 
@@ -414,8 +410,8 @@ function Home() {
                   Você se reconhece
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-neutral-500">
-                  O objetivo não é transformar quem você é,
-                  mas valorizar aquilo que já existe.
+                  O objetivo não é transformar quem você é, mas valorizar aquilo
+                  que já existe.
                 </p>
               </div>
             </div>
@@ -438,8 +434,8 @@ function Home() {
           </h2>
 
           <p className="mx-auto mt-6 max-w-lg text-sm leading-7 text-neutral-500">
-            Escolha o procedimento ideal para você e agende seu
-            horário de forma simples e rápida.
+            Escolha o procedimento ideal para você e agende seu horário de forma
+            simples e rápida.
           </p>
 
           <Link
@@ -454,7 +450,6 @@ function Home() {
           </Link>
         </div>
       </section>
-
     </main>
   );
 }
